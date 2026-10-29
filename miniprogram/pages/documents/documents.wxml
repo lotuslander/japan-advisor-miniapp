@@ -1,0 +1,62 @@
+<!-- 文书工作台 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">文書作成</view>
+    <view class="hero-sub">理由書・事業計画書のフレーム生成</view>
+  </view>
+
+  <view class="path-row">
+    <text class="path {{path===item.key?'active':''}}" wx:for="{{paths}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="setPath">{{item.label}}</text>
+  </view>
+
+  <view class="card">
+    <view class="section-title">从客户档案带入（可选）</view>
+    <picker mode="selector" range="{{clientList}}" range-key="name" value="{{clientIndex}}" bindchange="onPickClient">
+      <view class="picker-box">{{clientIndex >= 0 ? clientList[clientIndex].name : '选择客户…'}}</view>
+    </picker>
+  </view>
+
+  <view class="card">
+    <view class="section-title">申请信息（可选，填入后自动带入框架）</view>
+    <view class="form-row"><text class="fk">申请人姓名</text><input class="fi" placeholder="如 陈XX" value="{{form.name}}" data-k="name" bindinput="onInput" /></view>
+    <view class="form-row"><text class="fk">补充说明</text><input class="fi" placeholder="如 个体经营/子公司模式" value="{{form.extra}}" data-k="extra" bindinput="onInput" /></view>
+    <view class="gen-btn" bindtap="generate">生成文书框架</view>
+
+    <!-- AI 口述填表 -->
+    <view class="dictation-box">
+      <view class="dictation-title">🎙 AI 口述填表</view>
+      <view class="dictation-desc">按住说话，描述客户基本情况，AI 自动填入申请信息</view>
+      <button class="dictation-btn {{recording ? 'recording' : ''}}"
+              bindtouchstart="startDictation" bindtouchend="endDictation">
+        {{recording ? '松开结束' : '按住开始口述'}}
+      </button>
+      <!-- 语音输入法的文字会落到这里；也可直接打字 -->
+      <textarea class="dictation-input"
+                value="{{transcript}}"
+                bindinput="onTranscriptInput"
+                placeholder="也可直接输入客户情况，例如：陈先生 38岁 硕士 贸易公司总经理 年收1200万 想办经营管理签证"
+                auto-height
+                maxlength="500" />
+      <view class="dictation-transcript" wx:if="{{transcript}}">识别结果：{{transcript}}</view>
+      <view class="dictation-actions" wx:if="{{transcript}}">
+        <button size="mini" type="primary" bindtap="applyTranscript">填入并生成</button>
+        <button size="mini" bindtap="resetTranscript">重说</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{doc}}">
+    <view class="section-title">生成结果
+      <text class="copy-link" bindtap="copyDoc">{{copied ? '已复制' : '复制全文'}}</text>
+    </view>
+    <textarea class="doc-view" value="{{doc}}" disabled auto-height />
+  </view>
+
+  <view class="card" wx:if="{{!doc}}">
+    <view class="section-title">说明</view>
+    <view class="tip">框架按现行审查实务组织章节与证据要点，供顾问起草时对照；□ 项为待补全内容。文书需结合客户实态撰写后使用，不构成法律意见。</view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

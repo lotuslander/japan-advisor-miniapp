@@ -1,0 +1,86 @@
+<!-- 政策审核 -->
+<view class="page">
+
+  <!-- 列表模式 -->
+  <block wx:if="{{mode === 'list'}}">
+    <view class="hero">
+      <view class="hero-title">政策審査</view>
+      <view class="hero-sub">抓取入库的新政策需人工确认后进入现行库</view>
+    </view>
+
+    <view class="card" wx:for="{{list}}" wx:key="_id" data-id="{{item._id}}" bindtap="goDetail">
+      <view class="p-row">
+        <text class="badge {{item.status === 'rejected' ? 'badge-rej' : 'badge-pend'}}">{{item.statusLabel}}</text>
+        <text class="p-date">{{item.published_at}}</text>
+        <text class="p-cat">{{item.catLabel}}</text>
+      </view>
+      <view class="p-title">{{item.title_zh || item.title_ja}}</view>
+      <view class="p-source">{{item.source_name_zh}}</view>
+      <view class="p-ai" wx:if="{{item.has_ai}}">已生成 AI 摘要 · 审核时可见</view>
+    </view>
+
+    <view class="empty" wx:if="{{!loading && !error && list.length === 0}}">
+      <view class="empty-icon">—</view>
+      <view class="empty-text">暂无待审政策，运行 fetch-policies 抓取后自动出现</view>
+    </view>
+    <view class="empty" wx:if="{{error}}">
+      <view class="empty-text">读取失败，请检查网络</view>
+      <view class="empty-btn" bindtap="loadList">重试</view>
+    </view>
+  </block>
+
+  <!-- 详情模式 -->
+  <block wx:elif="{{policy}}">
+    <view class="hero">
+      <view class="hero-title">{{policy.title_zh || policy.title_ja}}</view>
+      <view class="hero-sub">{{policy.source_name_zh}} · {{policy.published_at}} · {{policy.catLabel}}</view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">原文摘要</view>
+      <view class="p-text">{{policy.summary}}</view>
+      <view class="p-url" bindtap="copyUrl">原文链接 ›</view>
+    </view>
+
+    <view class="card" wx:if="{{policy.ai_summary}}">
+      <view class="section-title">AI 摘要（参考，需人工核验）</view>
+      <view class="p-text ai">{{policy.ai_summary}}</view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">结构化字段（确认后写入，供对比/测算引用）</view>
+      <view class="form-row">
+        <text class="fk">最低资本金（万日元）</text>
+        <input class="fi" type="number" placeholder="如 3000" value="{{form.capital_min_jpy_wan}}" bindinput="onCapitalInput" />
+      </view>
+      <view class="form-row">
+        <text class="fk">日语能力要求</text>
+        <input class="fi" placeholder="如 B2相当（N2）" value="{{form.japanese_level}}" bindinput="onJapaneseInput" />
+      </view>
+      <view class="form-row">
+        <text class="fk">要求常勤职员</text>
+        <switch checked="{{form.employee_required}}" color="#C04851" bindchange="onEmployeeChange" />
+      </view>
+      <view class="form-row">
+        <text class="fk">要求专家确认</text>
+        <switch checked="{{form.expert_review}}" color="#C04851" bindchange="onExpertChange" />
+      </view>
+      <view class="form-row">
+        <text class="fk">过渡期截止（如 2028-10-16）</text>
+        <input class="fi" placeholder="无则留空" value="{{form.transition_until}}" bindinput="onTransitionInput" />
+      </view>
+      <view class="form-row">
+        <text class="fk">对顾问业务的影响</text>
+        <textarea class="ft" placeholder="要点提示" value="{{form.impact}}" bindinput="onImpactInput" auto-height />
+      </view>
+    </view>
+
+    <view class="btn-row">
+      <view class="btn-reject" bindtap="doReject">驳回</view>
+      <view class="btn-approve" bindtap="doApprove">确认生效</view>
+    </view>
+  </block>
+
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

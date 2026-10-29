@@ -1,0 +1,9 @@
+{
+  "name": "get-partners",
+  "version": "1.0.0",
+  "description": "资源协作层：名录/新增/更新/删除",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

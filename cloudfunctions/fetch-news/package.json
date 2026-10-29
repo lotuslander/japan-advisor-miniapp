@@ -1,0 +1,9 @@
+{
+  "name": "fetch-news",
+  "version": "1.0.0",
+  "description": "每日抓取日本移民/不动产新闻与政策风声",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

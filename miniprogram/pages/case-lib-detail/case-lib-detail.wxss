@@ -1,0 +1,24 @@
+.page { padding-bottom: 40rpx; }
+.hero { background: #C04851; padding: 48rpx 40rpx; color: #FDFBF6; }
+.hero-title { font-size: 34rpx; font-weight: 600; line-height: 1.5; letter-spacing: 1rpx; }
+.hero-tags { margin-top: 16rpx; }
+.hero .tag { background: rgba(255,255,255,0.2); color: #FDFBF6; padding: 4rpx 16rpx; margin-right: 8rpx; font-size: 22rpx; }
+
+.card { background: #FDFBF6; margin: 24rpx; border: 1rpx solid #e0d8c8; padding: 32rpx; }
+.section-title { font-size: 28rpx; font-weight: 600; margin-bottom: 16rpx; letter-spacing: 2rpx; }
+.kpi-row { display: flex; justify-content: space-around; text-align: center; }
+.kpi .num { font-size: 44rpx; font-weight: 700; color: #C04851; }
+.kpi .num.ok { color: #5A7A5A; }
+.kpi .label { font-size: 22rpx; color: #999; margin-top: 8rpx; }
+.kv { display: flex; padding: 12rpx 0; }
+.k { width: 180rpx; color: #999; font-size: 26rpx; }
+.v { flex: 1; font-size: 26rpx; }
+.challenge { font-size: 26rpx; line-height: 1.7; }
+.solution { font-size: 26rpx; line-height: 1.8; padding: 8rpx 0; }
+.disclaimer { font-size: 24rpx; color: #999; line-height: 1.7; }
+.source-line { font-size: 24rpx; color: #B08A5A; margin-top: 20rpx; line-height: 1.6; }
+.source-url { font-size: 22rpx; color: #7A6A55; margin-top: 8rpx; word-break: break-all; text-decoration: underline; }
+.rv { padding: 16rpx 0; border-bottom: 1rpx dashed #d0c8b8; }
+.rv-head { font-size: 24rpx; color: #C04851; font-weight: 600; }
+.rv-note { font-size: 26rpx; margin-top: 8rpx; line-height: 1.6; }
+.rv-resp { font-size: 24rpx; color: #5A7A5A; margin-top: 8rpx; line-height: 1.6; }

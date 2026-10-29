@@ -1,0 +1,45 @@
+<!-- 政策源管理 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">📡 政策源管理</view>
+    <view class="hero-sub">内置 {{builtinCount}} 个官方来源（含精确政策页深链）</view>
+  </view>
+
+  <!-- 一键导入 -->
+  <view class="card">
+    <view class="section-title">一键导入官方源</view>
+    <view class="about">导入全部日本政府机构、地方入管局、行业协会与精确政策页链接。这些地址会原样交给大模型，用于读取最新政策。</view>
+    <view class="btn primary" bindtap="importAllSources">🚀 一键导入全部源（{{builtinCount}}）</view>
+    <view class="btn" bindtap="resetSources">↺ 恢复内置清单</view>
+  </view>
+
+  <!-- 已导入的源 -->
+  <view class="card">
+    <view class="section-title">已导入的源（{{sources.length}}个）</view>
+    <view class="source-item" wx:for="{{sources}}" wx:key="url">
+      <view class="source-name">{{item.name}}</view>
+      <view class="source-cat">{{item.category}}</view>
+      <view class="source-url">{{item.url}}</view>
+    </view>
+    <view class="about" wx:if="{{!sources.length}}">暂无来源，点上方「一键导入全部源」即可载入内置清单。</view>
+  </view>
+
+  <!-- 手动添加 -->
+  <view class="card">
+    <view class="section-title">手动添加源</view>
+    <view class="form-row"><text class="fk">名称</text><input class="fi" placeholder="如 日本行政书士会" value="{{newName}}" bindinput="onNameInput" /></view>
+    <view class="form-row"><text class="fk">分类</text><input class="fi" placeholder="如 行业协会" value="{{newCat}}" bindinput="onCatInput" /></view>
+    <view class="form-row"><text class="fk">网址</text><input class="fi" placeholder="https://..." value="{{newUrl}}" bindinput="onUrlInput" /></view>
+    <view class="btn primary" bindtap="addSource">➕ 添加</view>
+  </view>
+
+  <!-- 域名白名单提示 -->
+  <view class="card">
+    <view class="section-title">⚠️ 域名白名单配置</view>
+    <view class="about">微信小程序要求：所有要请求的域名必须在微信公众平台配置白名单。</view>
+    <view class="about">路径：微信公众平台 → 开发 → 开发设置 → 服务器域名 → request合法域名</view>
+    <view class="btn" bindtap="copyDomains">📋 复制所有域名</view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

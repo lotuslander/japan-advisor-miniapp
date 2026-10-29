@@ -1,0 +1,95 @@
+/* 全局样式 v0.7 — 日式+苹果风 */
+page {
+  background: #F5F2EB;
+  background-image: radial-gradient(circle at 20% 10%, rgba(192,72,81,0.02) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 90%, rgba(90,122,90,0.02) 0%, transparent 50%);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Mincho ProN", "Yu Mincho", "PingFang SC", sans-serif;
+  font-size: 28rpx;
+  color: #1d1d1f;
+  line-height: 1.6;
+  letter-spacing: 0.5rpx;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 200rpx;
+}
+
+.card {
+  background: #ffffff;
+  border: none;
+  border-radius: 20rpx;
+  padding: 36rpx;
+  margin: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.06), 0 1rpx 3rpx rgba(0,0,0,0.04);
+  position: relative;
+}
+
+/* 和紙の折り目風の装飾 */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 36rpx;
+  width: 60rpx;
+  height: 3rpx;
+  background: linear-gradient(90deg, #4A3728 0%, #4A3728 60%, transparent 60%);
+  border-radius: 0 0 3rpx 3rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 1rpx;
+}
+.section-more {
+  font-size: 24rpx;
+  color: #86868b;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  font-size: 22rpx;
+  letter-spacing: 1rpx;
+  border-radius: 20rpx;
+  font-weight: 500;
+}
+.tag-tighten { background: #C04851; color: #fff; }
+.tag-relax { background: #5A7A5A; color: #fff; }
+.tag-info { background: #7A8B9E; color: #fff; }
+.tag-warn { background: #B8860B; color: #fff; }
+.tag-clarify { background: #7A8B9E; color: #fff; }
+.tag-create { background: #5A7A5A; color: #fff; }
+.tag-ai { background: #1F3A5F; color: #fff; }
+
+.btn-primary {
+  background: #4A3728;
+  color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx 48rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+  box-shadow: 0 4rpx 12rpx rgba(74,55,40,0.25);
+}
+
+.link-accent { color: #4A3728; }
+
+/* 和風装飾：桜のワンポイント */
+.hero {
+  position: relative;
+}
+.hero::after {
+  content: '❀';
+  position: absolute;
+  right: 40rpx;
+  top: 30rpx;
+  font-size: 40rpx;
+  color: rgba(192,72,81,0.15);
+}

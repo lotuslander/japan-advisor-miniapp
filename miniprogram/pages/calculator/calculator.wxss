@@ -1,0 +1,23 @@
+.page { padding-bottom: 40rpx; }
+.hero { background: #C04851; padding: 48rpx 40rpx; color: #FDFBF6; }
+.hero-title { font-size: 36rpx; font-weight: 600; letter-spacing: 4rpx; }
+.hero-sub { font-size: 24rpx; opacity: 0.8; margin-top: 8rpx; }
+
+.score-card {
+  margin: -30rpx 24rpx 0; background: #FDFBF6;
+  border: 1rpx solid #e0d8c8;
+  padding: 36rpx; text-align: center;
+}
+.score-num { font-size: 80rpx; font-weight: 700; color: #C04851; }
+.score-label { font-size: 24rpx; color: #999; }
+.score-result { margin-top: 16rpx; font-size: 24rpx; font-weight: 600; line-height: 1.6; }
+.score-result.pass80 { color: #5A7A5A; }
+.score-result.pass70 { color: #B8860B; }
+.score-result.below { color: #C04851; }
+
+.card { background: #FDFBF6; margin: 24rpx; border: 1rpx solid #e0d8c8; padding: 32rpx; }
+.group-title { font-size: 28rpx; font-weight: 600; margin-bottom: 16rpx; letter-spacing: 2rpx; }
+.opt { display: block; padding: 12rpx 0; font-size: 26rpx; }
+.hint { font-size: 22rpx; color: #999; margin-top: 8rpx; }
+.note { font-size: 22rpx; color: #999; padding: 24rpx 48rpx; text-align: center; line-height: 1.6; }
+.save-btn { margin: 0 24rpx; padding: 28rpx; background: #C04851; color: #FDFBF6; text-align: center; font-weight: 600; letter-spacing: 2rpx; }

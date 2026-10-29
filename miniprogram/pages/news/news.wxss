@@ -1,0 +1,17 @@
+.page { padding-bottom: 40rpx; }
+.hero { background: #C04851; padding: 48rpx 40rpx; color: #FDFBF6; }
+.hero-title { font-size: 34rpx; font-weight: 600; }
+.hero-sub { font-size: 24rpx; opacity: 0.85; margin-top: 8rpx; }
+.news-item { display: flex; padding: 24rpx 32rpx; border-bottom: 1rpx solid #f0e8d8; background: #FDFBF6; }
+.news-type { font-size: 20rpx; padding: 4rpx 12rpx; height: 40rpx; line-height: 32rpx; margin-right: 16rpx; flex-shrink: 0; }
+.news-type.official { background: #1F3A5F; color: #FFFFFF; border-radius: 6rpx; }
+.news-type.ai { background: #C04851; color: #FFFFFF; border-radius: 6rpx; }
+.news-body { flex: 1; }
+.news-title-ja { font-size: 26rpx; color: #2D2D2D; line-height: 1.4; font-weight: 500; }
+.news-summary-zh { font-size: 24rpx; color: #666; line-height: 1.5; margin-top: 6rpx; padding-left: 12rpx; border-left: 3rpx solid #C04851; }
+.news-meta { font-size: 20rpx; color: #999; margin-top: 8rpx; }
+.empty { padding: 80rpx 0; text-align: center; color: #aaa; }
+
+/* 空态文本（wxml 使用但此前未定义） */
+.empty-text { font-size: 24rpx; color: #6B6259; text-align: center; padding: 40rpx 0; }
+.empty-btn { display: inline-block; margin-top: 16rpx; padding: 12rpx 28rpx; font-size: 24rpx; color: #C04851; border: 1rpx solid #C04851; border-radius: 8rpx; }

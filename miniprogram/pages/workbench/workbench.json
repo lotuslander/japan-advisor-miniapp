@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "工作台",
+  "usingComponents": {
+    "global-ai-float": "../../components/global-ai-float/global-ai-float"
+  }
+}

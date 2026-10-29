@@ -1,0 +1,30 @@
+<!-- 线索录入 -->
+<view class="page">
+  <view class="referral-banner" wx:if="{{referralCode}}">
+    你是由老客户 <text class="rc">{{referralCode}}</text> 推荐来的，保存后双方均可获得服务费抵扣券
+  </view>
+  <view class="card">
+    <view class="form-row"><text class="label">姓名</text><input placeholder="客户姓名" value="{{form.name}}" bindinput="onName" /></view>
+    <view class="form-row"><text class="label">電話/微信</text><input placeholder="联系方式" value="{{form.phone}}" bindinput="onPhone" /></view>
+    <view class="form-row"><text class="label">来源</text>
+      <picker range="{{sources}}" bindchange="onSource">
+        <view class="picker">{{sources[form.source] || '请选择来源'}}</view>
+      </picker>
+    </view>
+    <view class="form-row"><text class="label">初步意向</text>
+      <picker range="{{intents}}" bindchange="onIntent">
+        <view class="picker">{{intents[form.intent] || '请选择'}}</view>
+      </picker>
+    </view>
+    <view class="form-row"><text class="label">预算（万日元）</text><input type="number" placeholder="如 3000" value="{{form.budget_jpy}}" bindinput="onBudget" /></view>
+    <view class="form-row"><text class="label">时间预期</text>
+      <picker range="{{timelines}}" bindchange="onTimeline">
+        <view class="picker">{{timelines[form.timeline] || '请选择'}}</view>
+      </picker>
+    </view>
+    <view class="form-row"><text class="label">备注</text><textarea placeholder="客户背景、关注点、禁忌…" value="{{form.note}}" bindinput="onNote" /></view>
+  </view>
+  <view class="save-btn" bindtap="save">保存線索</view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

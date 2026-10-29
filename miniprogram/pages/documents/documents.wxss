@@ -1,0 +1,54 @@
+.page { padding-bottom: 40rpx; }
+.hero { background: #C04851; padding: 48rpx 40rpx; color: #FDFBF6; }
+.hero-title { font-size: 34rpx; font-weight: 600; letter-spacing: 2rpx; }
+.hero-sub { font-size: 24rpx; opacity: 0.85; margin-top: 8rpx; }
+
+.path-row { display: flex; gap: 20rpx; padding: 24rpx; }
+.path { font-size: 26rpx; color: #999; padding: 8rpx 28rpx; border: 1rpx solid #d8d0c0; }
+.path.active { color: #C04851; border-color: #C04851; font-weight: 600; }
+
+.card { background: #FDFBF6; margin: 24rpx; border: 1rpx solid #e0d8c8; padding: 32rpx; }
+.section-title { font-size: 28rpx; font-weight: 600; margin-bottom: 16rpx; letter-spacing: 2rpx; }
+.form-row { display: flex; align-items: center; padding: 16rpx 0; border-bottom: 1rpx solid #f0e8d8; }
+.fk { width: 180rpx; font-size: 24rpx; color: #666; flex-shrink: 0; }
+.fi { flex: 1; font-size: 26rpx; }
+
+.gen-btn { background: #C04851; color: #FDFBF6; text-align: center; padding: 22rpx 0; font-size: 28rpx; letter-spacing: 2rpx; margin-top: 24rpx; }
+.copy-link { font-size: 24rpx; color: #C04851; float: right; }
+.doc-view { width: 100%; background: #F8F4EC; border: 1rpx solid #e0d8c8; padding: 24rpx; font-size: 24rpx; line-height: 1.7; box-sizing: border-box; }
+.tip { font-size: 24rpx; color: #888; line-height: 1.7; }
+
+.picker-box { background: #F8F4EC; border: 1rpx solid #e0d8c8; padding: 20rpx; font-size: 26rpx; color: #555; }
+
+.dictation-box {
+  margin-top: 30rpx; padding: 24rpx;
+  background: #FDFBF6; border: 2rpx dashed #C04851;
+}
+.dictation-title { font-size: 28rpx; font-weight: 600; color: #C04851; }
+.dictation-desc { font-size: 22rpx; color: #888; margin: 8rpx 0 16rpx; }
+.dictation-btn {
+  background: #C04851; color: #fff;
+  font-size: 28rpx; padding: 24rpx; border-radius: 12rpx;
+}
+.dictation-btn.recording { background: #8B0000; animation: pulse 1.2s infinite; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+.dictation-transcript {
+  margin-top: 16rpx; padding: 16rpx;
+  background: #F8F4EC; font-size: 24rpx; color: #444; line-height: 1.6;
+}
+.dictation-actions { display: flex; gap: 16rpx; margin-top: 16rpx; justify-content: center; }
+/* 口述输入框（wxml 使用，配合语音输入法/手打） */
+.dictation-input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 16rpx;
+  min-height: 120rpx;
+  padding: 16rpx;
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: #444;
+  background: #FDFBF6;
+  border: 1rpx solid #E2DACD;
+  border-radius: 8rpx;
+  text-align: left;
+}

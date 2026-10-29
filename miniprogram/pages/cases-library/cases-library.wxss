@@ -1,0 +1,27 @@
+.page { padding-bottom: 40rpx; }
+.hero { background: #C04851; padding: 48rpx 40rpx; color: #FDFBF6; }
+.hero-title { font-size: 36rpx; font-weight: 600; letter-spacing: 4rpx; }
+.hero-sub { font-size: 24rpx; opacity: 0.8; margin-top: 8rpx; }
+
+.filter-row { display: flex; padding: 24rpx; gap: 32rpx; }
+.filter { font-size: 26rpx; color: #999; }
+.filter.active { color: #2D2D2D; font-weight: 600; }
+.case-card {
+  background: #FDFBF6; margin: 0 24rpx 16rpx; padding: 28rpx;
+  border: 1rpx solid #e0d8c8;
+}
+.case-title { font-size: 28rpx; font-weight: 600; margin-bottom: 12rpx; }
+.case-tags { margin-bottom: 12rpx; }
+.tag { display: inline-block; padding: 4rpx 12rpx; background: #e8e0d0; color: #555; font-size: 22rpx; margin-right: 8rpx; }
+.case-meta { font-size: 24rpx; color: #999; }
+.badge { display: inline-block; margin-left: 12rpx; padding: 2rpx 10rpx; border: 1rpx solid #C04851; color: #C04851; font-size: 20rpx; }
+.badge-ok { border-color: #2E7D5B; color: #2E7D5B; }
+.badge-rej { border-color: #C04851; color: #C04851; }
+.empty { text-align: center; color: #999; padding: 120rpx 0; }
+.empty-btn {
+  display: inline-block; margin-top: 24rpx; padding: 12rpx 40rpx;
+  border: 1rpx solid #C04851; color: #C04851; font-size: 24rpx;
+}
+
+.search-wrap { padding: 16rpx 32rpx; background: #FDFBF6; }
+.search { background: #F8F4EC; padding: 16rpx 24rpx; font-size: 26rpx; border: 1rpx solid #e0d8c8; }

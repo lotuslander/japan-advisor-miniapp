@@ -1,0 +1,38 @@
+<!-- 案例库 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">事例集</view>
+    <view class="hero-sub">已脱敏获批案例 · 供新案件参考</view>
+  </view>
+
+  <view class="filter-row">
+    <text class="filter {{cat==='all'?'active':''}}" data-c="all" bindtap="setCat">全部</text>
+    <text class="filter {{cat==='business_manager'?'active':''}}" data-c="business_manager" bindtap="setCat">經營管理</text>
+    <text class="filter {{cat==='hsp'?'active':''}}" data-c="hsp" bindtap="setCat">高度人才</text>
+    <text class="filter {{cat==='pr'?'active':''}}" data-c="pr" bindtap="setCat">永住</text>
+    <text class="filter {{cat==='realestate'?'active':''}}" data-c="realestate" bindtap="setCat">置业</text>
+  </view>
+
+  <view class="search-wrap">
+    <input class="search" placeholder="搜索案例关键词（如：餐饮/纳税/补正）" value="{{keyword}}" bindinput="onSearchInput" confirm-type="search" bindconfirm="load" />
+  </view>
+
+  <view class="case-card" wx:for="{{list}}" wx:key="_id" data-id="{{item._id}}" bindtap="goDetail">
+    <view class="case-title">{{item.title}}</view>
+    <view class="case-tags">
+      <text class="tag" wx:for="{{item.profile_tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+    </view>
+    <view class="case-meta">{{item.pathLabel}} · {{item.resultLabel}}
+      <text class="badge {{item.isSuccess ? 'badge-ok' : 'badge-rej'}}">{{item.brand}}</text>
+      <text class="badge" wx:if="{{item.source_url}}">公开报道</text>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!list.length}}">{{keyword ? '没有匹配的案例，换个关键词试试' : '暂无案例'}}</view>
+  <view class="empty" wx:if="{{!list.length}}">
+    <view class="empty-btn" bindtap="clearSearch" wx:if="{{keyword}}">清空搜索</view>
+    <view class="empty-btn" bindtap="load" wx:else>重新加载</view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

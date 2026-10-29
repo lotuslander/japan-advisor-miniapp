@@ -1,0 +1,81 @@
+.page { padding-bottom: 40rpx; }
+
+.cat-bar {
+  display: flex; padding: 20rpx 24rpx; gap: 16rpx;
+  background: #FDFBF6; border-bottom: 1rpx solid #e0d8c8;
+  overflow-x: auto;
+}
+.cat-item {
+  padding: 10rpx 32rpx; font-size: 26rpx;
+  color: #999; white-space: nowrap; letter-spacing: 2rpx;
+}
+.cat-item.active {
+  background: #C04851; color: #FDFBF6;
+}
+
+.current-banner {
+  margin: 24rpx; padding: 36rpx;
+  background: #C04851; color: #FDFBF6;
+}
+.current-label { font-size: 22rpx; opacity: 0.8; letter-spacing: 2rpx; }
+.current-main { font-size: 32rpx; font-weight: 600; margin-top: 12rpx; line-height: 1.5; letter-spacing: 1rpx; }
+.current-hint { font-size: 24rpx; opacity: 0.9; margin-top: 8rpx; }
+
+.timeline { padding: 16rpx 24rpx; }
+.t-node { display: flex; }
+.t-axis { width: 40rpx; display: flex; flex-direction: column; align-items: center; }
+.t-dot {
+  width: 20rpx; height: 20rpx; margin-top: 24rpx;
+  border: 3rpx solid #F8F4EC;
+  box-shadow: 0 0 0 2rpx #d0c8b8;
+}
+.t-dot.tighten { background: #C04851; }
+.t-dot.relax { background: #5A7A5A; }
+.t-dot.create { background: #7A8B9E; }
+.t-line { flex: 1; width: 1rpx; background: #d0c8b8; }
+
+.t-card {
+  flex: 1; background: #FDFBF6;
+  border: 1rpx solid #e0d8c8;
+  padding: 28rpx;
+  margin: 0 0 24rpx 16rpx;
+}
+.t-card.current { border: 2rpx solid #C04851; }
+.t-date { font-size: 24rpx; color: #999; margin-bottom: 10rpx; letter-spacing: 1rpx; }
+.t-title { font-size: 28rpx; font-weight: 600; margin-bottom: 12rpx; }
+.t-summary { font-size: 26rpx; color: #555; line-height: 1.6; }
+
+.t-compare { margin-top: 20rpx; padding-top: 20rpx; border-top: 1rpx dashed #d0c8b8; }
+.t-source { margin-top: 16rpx; font-size: 22rpx; color: #999; display: flex; align-items: center; }
+.t-source .cite { color: #C04851; margin-left: 12rpx; }
+
+/* 历史版本对比表 */
+.version-block { margin: 8rpx 24rpx 40rpx; }
+.v-head { padding: 24rpx 8rpx 16rpx; }
+.v-title { font-size: 30rpx; font-weight: 600; color: #2D2D2D; letter-spacing: 2rpx; }
+.v-hint { font-size: 22rpx; color: #999; margin-top: 6rpx; }
+.v-table-scroll { width: 100%; }
+.v-table { display: table; min-width: 720rpx; border-collapse: collapse; }
+.v-row { display: table-row; }
+.v-cell {
+  display: table-cell; min-width: 150rpx; padding: 20rpx 16rpx;
+  font-size: 24rpx; color: #444; text-align: center;
+  border: 1rpx solid #e0d8c8; background: #FDFBF6;
+}
+.v-cell.v-fixed {
+  min-width: 150rpx; text-align: left; font-weight: 600; color: #2D2D2D;
+  background: #f4efe4; position: sticky; left: 0;
+}
+.v-row-head .v-cell { font-weight: 600; color: #C04851; background: #f9f1ea; }
+.v-note { padding: 16rpx 8rpx; font-size: 22rpx; color: #999; line-height: 1.6; }
+
+.empty { padding: 80rpx 0; text-align: center; }
+.empty-icon { font-size: 48rpx; color: #d0c8b8; }
+.empty-text { font-size: 24rpx; color: #999; margin-top: 16rpx; }
+.empty-btn {
+  display: inline-block; margin-top: 24rpx; padding: 12rpx 40rpx;
+  border: 1rpx solid #C04851; color: #C04851; font-size: 24rpx;
+}
+
+.ai-summary { margin: 16rpx 24rpx 0; padding: 12rpx 16rpx; background: #EEF3F8; border-left: 4rpx solid #1F3A5F; font-size: 22rpx; color: #1F3A5F; }
+.t-source .cite.warn { color: #B8860B; }

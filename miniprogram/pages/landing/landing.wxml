@@ -1,0 +1,17 @@
+<!-- 落地支援 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">落地支援チェックリスト</view>
+    <view class="hero-sub">从获批到安居的全流程执行指引</view>
+  </view>
+
+  <view class="card" wx:for="{{sections}}" wx:for-index="si" wx:key="title">
+    <view class="section-title">{{item.title}}</view>
+    <view class="check" wx:for="{{item.items}}" wx:for-item="t" wx:for-index="ti" wx:key="text">
+      <checkbox checked="{{t.done}}" data-si="{{si}}" data-ti="{{ti}}" bindtap="toggle" />
+      <text class="check-text {{t.done ? 'done-text' : ''}}">{{t.text}}</text>
+    </view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

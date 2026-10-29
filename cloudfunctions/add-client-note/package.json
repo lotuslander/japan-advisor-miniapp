@@ -1,0 +1,9 @@
+{
+  "name": "add-client-note",
+  "version": "1.0.0",
+  "description": "客户跟进记录新增",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

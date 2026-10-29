@@ -1,0 +1,52 @@
+<!-- 案例详情 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">{{detail.title}}</view>
+    <view class="hero-tags">
+      <text class="tag" wx:for="{{detail.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="kpi-row">
+      <view class="kpi"><view class="num">{{detail.duration}}</view><view class="label">耗时（月）</view></view>
+      <view class="kpi"><view class="num">{{detail.budget}}</view><view class="label">预算（万日元）</view></view>
+      <view class="kpi"><view class="num ok">{{detail.result}}</view><view class="label">结果</view></view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">客户画像</view>
+    <view class="kv"><text class="k">关键特征</text><text class="v">{{detail.profile.tags || '未记录'}}</text></view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">核心挑战</view>
+    <view class="challenge">{{detail.challenge}}</view>
+  </view>
+
+  <view class="card" wx:if="{{detail.review_notes.length}}">
+    <view class="section-title">审查过程 · 补正应对</view>
+    <view class="rv" wx:for="{{detail.review_notes}}" wx:key="stage">
+      <view class="rv-head">{{index + 1}}. {{item.stage}} · 入管局意见</view>
+      <view class="rv-note">{{item.note}}</view>
+      <view class="rv-resp">应对：{{item.response}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">解决方案</view>
+    <view class="solution" wx:for="{{detail.solution}}" wx:key="*this">{{index + 1}}. {{item}}</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">适用性提示</view>
+    <view class="disclaimer">{{detail.disclaimer}}</view>
+    <block wx:if="{{detail.source_note}}">
+      <view class="source-line">{{detail.source_note}}</view>
+      <view class="source-url" wx:if="{{detail.source_url}}" bindtap="openSource">{{detail.source_url}}</view>
+    </block>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

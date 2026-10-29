@@ -1,0 +1,94 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">知識庫管理</view>
+    <view class="hero-sub">内置数据 + AI自动更新</view>
+  </view>
+
+  <!-- 内置政策（直接展示全部） -->
+  <view class="card">
+    <view class="section-title">📋 内置政策（{{builtinPolicies.length}}条）</view>
+    <view class="custom-policy" wx:for="{{builtinPolicies}}" wx:key="id" bindtap="togglePolicyDetail" data-id="{{item.id}}">
+      <view class="custom-policy-title">{{item.title_zh}} {{expandedPolicyId === item.id ? '▾' : '▸'}}</view>
+      <view class="custom-policy-summary">{{item.summary}}</view>
+      <view class="custom-policy-meta">{{item.source}} · {{item.date}}</view>
+      <view wx:if="{{expandedPolicyId === item.id}}" class="policy-detail">
+        <view class="detail-row"><text class="detail-label">日文原名：</text>{{item.title_ja}}</view>
+        <view class="detail-row"><text class="detail-label">政策方向：</text>{{item.directionLabel}}</view>
+        <view class="detail-row"><text class="detail-label">是否现行：</text>{{item.is_current ? '现行有效' : '已废止/旧版'}}</view>
+        <view class="detail-row"><text class="detail-label">条文解读：</text></view>
+        <view class="detail-content">{{item.summary}}</view>
+        <view class="tip">💡 点击「AI更新政策」可以自动搜索最新政策并追加到这里</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 内置案例（直接展示全部） -->
+  <view class="card">
+    <view class="section-title">📁 内置案例（{{builtinCases.length}}个）</view>
+    <view class="custom-policy" wx:for="{{builtinCases}}" wx:key="id" bindtap="toggleCaseDetail" data-id="{{item.id}}">
+      <view class="custom-policy-title">{{item.title}} {{expandedCaseId === item.id ? '▾' : '▸'}}</view>
+      <view class="custom-policy-summary">{{item.lessons}}</view>
+      <view class="custom-policy-meta">{{item.path}} · {{item.result}}</view>
+      <view wx:if="{{expandedCaseId === item.id}}" class="policy-detail">
+        <view class="detail-row"><text class="detail-label">客户背景：</text>{{item.client_profile}}</view>
+        <view class="detail-row"><text class="detail-label">申请路线：</text>{{item.path}}</view>
+        <view class="detail-row"><text class="detail-label">结果：</text>{{item.result}}</view>
+        <view class="detail-row"><text class="detail-label">成功/失败原因：</text></view>
+        <view class="detail-content">{{item.lessons}}</view>
+        <view class="detail-row" wx:if="{{item.credit_score}}"><text class="detail-label">积分情况：</text>{{item.credit_score}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 核心商圈数据 -->
+  <view class="card">
+    <view class="section-title">🏙️ 核心商圈数据（{{builtinAreas.length}}个）</view>
+    <view class="custom-policy" wx:for="{{builtinAreas}}" wx:key="id">
+      <view class="custom-policy-title">{{item.name}}</view>
+      <view class="custom-policy-summary">均价：{{item.avg_price}} | 表面利回：{{item.surface_yield}} | 空置率：{{item.vacancy}}</view>
+      <view class="custom-policy-meta">{{item.note}}</view>
+    </view>
+  </view>
+
+  <!-- AI自动更新的政策 -->
+  <view class="card" wx:if="{{customPolicies.length > 0}}">
+    <view class="section-title">📌 AI自动更新的政策（{{customPolicies.length}}条）</view>
+    <view class="custom-policy" wx:for="{{customPolicies}}" wx:key="id">
+      <view class="custom-policy-title">{{item.title_zh}}</view>
+      <view class="custom-policy-summary">{{item.summary}}</view>
+      <view class="custom-policy-meta">{{item.source}} · {{item.date}}</view>
+      <view class="btn small danger" data-id="{{item.id}}" bindtap="deleteCustomPolicy">删除</view>
+    </view>
+  </view>
+
+  <!-- AI自动更新的案例 -->
+  <view class="card" wx:if="{{customCases.length > 0}}">
+    <view class="section-title">📚 AI自动更新的案例（{{customCases.length}}个）</view>
+    <view class="custom-policy" wx:for="{{customCases}}" wx:key="id">
+      <view class="custom-policy-title">{{item.title_zh}}</view>
+      <view class="custom-policy-summary">{{item.summary}}</view>
+      <view class="custom-policy-meta">{{item.source}} · {{item.date}}</view>
+    </view>
+  </view>
+
+  <!-- 添加自定义政策 -->
+  <view class="card">
+    <view class="section-title">➕ 添加自定义政策</view>
+    <view class="btn primary" bindtap="showAddPolicyForm">
+      手动添加新政策
+    </view>
+    <view class="tip">AI搜索到的政策会自动保存，也可以手动添加</view>
+  </view>
+
+  <!-- 添加政策表单 -->
+  <view class="card" wx:if="{{showAddPolicy}}">
+    <view class="section-title">新政策内容</view>
+    <input class="input" placeholder="政策标题（如：2026年10月永住新规）" value="{{newPolicyTitle}}" bindinput="onPolicyTitleInput" />
+    <textarea class="textarea" placeholder="政策内容摘要..." value="{{newPolicySummary}}" bindinput="onPolicySummaryInput" />
+    <input class="input" placeholder="来源（如：出入国在留管理厅）" value="{{newPolicySource}}" bindinput="onPolicySourceInput" />
+    <view class="btn primary" bindtap="saveCustomPolicy">保存到知识库</view>
+  </view>
+
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

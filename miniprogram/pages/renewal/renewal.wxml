@@ -1,0 +1,22 @@
+<!-- 经营管理签续签检查清单 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">経営管理ビザ更新チェックリスト</view>
+    <view class="hero-sub">2025-10-16 新规后续签审查要点 · 勾选自动保存本机</view>
+  </view>
+
+  <view class="card" wx:for="{{groups}}" wx:for-item="g" wx:key="title">
+    <view class="section-title">{{g.title}}</view>
+    <view class="chk" wx:for="{{g.items}}" wx:for-item="it" wx:for-index="ii" wx:key="text">
+      <checkbox checked="{{done[g.title + '_' + ii]}}" data-gi="{{g.title}}" data-ii="{{ii}}" bindtap="toggle" />
+      <view class="chk-body">
+        <view class="chk-text {{done[g.title + '_' + ii] ? 'done-text' : ''}}">{{it.text}}</view>
+        <view class="chk-tip">{{it.tip}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="reset-btn" bindtap="reset">清空勾选</view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

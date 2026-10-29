@@ -1,0 +1,29 @@
+.page { padding: 20rpx; }
+.hero { padding: 30rpx 20rpx; }
+.hero-title { font-size: 36rpx; font-weight: bold; color: #C04851; }
+.hero-sub { font-size: 24rpx; color: #999; margin-top: 10rpx; }
+
+.card { background: #fff; border-radius: 12rpx; padding: 24rpx; margin-bottom: 20rpx; }
+.section-title { font-size: 28rpx; font-weight: 600; margin-bottom: 16rpx; color: #2D2D2D; }
+
+.desc-input { width: 100%; min-height: 150rpx; padding: 16rpx; background: #F8F4EC; border: 1rpx solid #e0d8c8; font-size: 26rpx; margin-bottom: 16rpx; }
+
+.btn.primary { background: #C04851; color: #fff; text-align: center; padding: 20rpx; border-radius: 8rpx; font-size: 28rpx; }
+
+.plan-row { display: flex; padding: 12rpx 0; border-bottom: 1rpx solid #f0ebe0; }
+.plan-lbl { width: 160rpx; font-size: 26rpx; color: #999; }
+.plan-val { flex: 1; font-size: 26rpx; font-weight: 600; color: #2D2D2D; }
+.level-ok { color: #4a9d5b; }
+.level-warning { color: #E8A838; }
+.level-danger { color: #C04851; }
+
+.plan-section { margin-top: 20rpx; }
+.plan-section-title { font-size: 26rpx; font-weight: 600; margin-bottom: 10rpx; color: #2D2D2D; }
+.plan-item { padding: 8rpx 0; font-size: 24rpx; color: #444; }
+.plan-item.warn { color: #C04851; }
+
+.timeline-row { display: flex; justify-content: space-between; padding: 8rpx 0; font-size: 24rpx; }
+.tl-stage { color: #2D2D2D; }
+.tl-duration { color: #999; }
+
+.budget-row { padding: 6rpx 0; font-size: 24rpx; color: #444; }

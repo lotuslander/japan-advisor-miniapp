@@ -1,0 +1,14 @@
+.page { padding-bottom: 40rpx; }
+.referral-banner {
+  margin: 24rpx 24rpx 0; padding: 20rpx;
+  background: #F8F0E0; border-left: 6rpx solid #C04851;
+  font-size: 24rpx; color: #666; line-height: 1.6;
+}
+.rc { color: #C04851; font-weight: 700; letter-spacing: 1rpx; }
+.card { background: #FDFBF6; margin: 24rpx; border: 1rpx solid #e0d8c8; padding: 32rpx; }
+.form-row { display: flex; align-items: center; padding: 24rpx 0; border-bottom: 1rpx solid #e8e0d0; }
+.form-row:last-child { border-bottom: none; }
+.label { width: 180rpx; font-size: 26rpx; color: #999; }
+.form-row input, .form-row textarea { flex: 1; font-size: 28rpx; }
+.picker { flex: 1; font-size: 28rpx; color: #2D2D2D; }
+.save-btn { margin: 0 24rpx; padding: 28rpx; background: #C04851; color: #FDFBF6; text-align: center; font-weight: 600; letter-spacing: 2rpx; }

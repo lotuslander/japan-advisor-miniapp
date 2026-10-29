@@ -1,0 +1,90 @@
+.page {
+  padding: 20rpx;
+  padding-bottom: 120rpx;
+  background: #F5F2EB;
+  min-height: 100vh;
+}
+.header {
+  margin-bottom: 20rpx;
+}
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #4A3728;
+}
+.sub {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+.cat-bar {
+  white-space: nowrap;
+  margin: 20rpx 0;
+}
+.cat-item {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  background: #fff;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #666;
+  margin-right: 12rpx;
+}
+.cat-item.active {
+  background: #4A3728;
+  color: #F8F4EC;
+}
+.issue-list {
+  margin-top: 20rpx;
+}
+.issue-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  border: 1rpx solid #E8DFD0;
+}
+.issue-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.issue-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #4A3728;
+}
+.priority {
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+  background: #C04851;
+  color: #fff;
+}
+.priority.p4 {
+  background: #E8A838;
+}
+.priority.p3 {
+  background: #6B8E23;
+}
+.issue-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 12rpx;
+  line-height: 1.6;
+}
+.issue-ai {
+  font-size: 24rpx;
+  color: #4A3728;
+  background: #F8F4EC;
+  padding: 16rpx;
+  border-radius: 8rpx;
+  margin-top: 16rpx;
+  line-height: 1.6;
+}
+.issue-action {
+  font-size: 24rpx;
+  color: #C04851;
+  margin-top: 16rpx;
+  text-align: right;
+}

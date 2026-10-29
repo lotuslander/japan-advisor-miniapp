@@ -1,0 +1,229 @@
+<!-- 工作台 -->
+<view class="page">
+
+  <!-- 顶部欢迎区 -->
+  <view class="hero">
+    <view class="hero-hello">投资日本 AI 小助理</view>
+    <view class="hero-sub" bindtap="goPolicyReview">今日待办 {{todoCount}} 项 · 政策待审 {{newPolicies}} 条{{todayFollowups ? ' · 今日需跟进 ' + todayFollowups + ' 人' : ''}} ＞</view>
+    <view class="hero-line"></view>
+  </view>
+
+  <!-- AI政策更新检查（端侧引擎：分批把官网清单交给大模型） -->
+  <view class="ai-update-banner {{aiSearching ? 'searching' : ''}}" bindtap="checkPolicyUpdates">
+    <view class="ai-update-icon">{{aiSearching ? '🔍' : '🤖'}}</view>
+    <view class="ai-update-text">
+      <view class="ai-update-title">{{aiSearching ? 'AI正在核查政策...' : 'AI政策更新检查'}}</view>
+      <view class="ai-update-desc" wx:if="{{aiSearching}}">{{policyUpdateMsg || '请稍等，大模型正在读取官方网站'}}</view>
+      <view class="ai-update-desc" wx:else>核查{{policySourceCount}}个官方来源 · 上次更新 {{lastPolicyUpdateText}}</view>
+    </view>
+    <view class="ai-update-arrow">{{aiSearching ? '⏳' : '＞'}}</view>
+  </view>
+
+  <!-- AI案例更新按钮 -->
+  <view class="ai-update-banner case {{caseSearching ? 'searching' : ''}}" bindtap="checkCaseUpdates">
+    <view class="ai-update-icon">{{caseSearching ? '🔍' : '📚'}}</view>
+    <view class="ai-update-text">
+      <view class="ai-update-title">{{caseSearching ? 'AI正在搜索案例...' : 'AI案例更新检查'}}</view>
+      <view class="ai-update-desc">{{caseSearching ? '请稍等，大模型正在查找最新判例' : '大模型搜索判例库和行政书士协会的真实案例'}}</view>
+    </view>
+    <view class="ai-update-arrow">{{caseSearching ? '⏳' : '＞'}}</view>
+  </view>
+
+  <!-- 政策·新闻滚动条（AI 更新优先，其次官方动态；放在 AI 更新入口下方，不抢焦点） -->
+  <policy-scroll-news limit="{{5}}"></policy-scroll-news>
+
+  <!-- 1. 今日待办（由真实数据推导，无内容时显示空态） -->
+  <view class="card">
+    <view class="section-title">📋 今日待办</view>
+    <view class="todo-item" wx:for="{{todayTodos}}" wx:key="task">
+      <text class="todo-priority {{item.priority}}">{{item.priority === 'high' ? '高' : item.priority === 'medium' ? '中' : '低'}}</text>
+      <text class="task-name">{{item.task}}</text>
+    </view>
+    <view class="tip" wx:if="{{todayTodos.length === 0}}">暂无待办 · 录入客户或线索后会自动生成</view>
+  </view>
+
+  <!-- 2. 两大核心模块卡片 -->
+  <view class="dual-module">
+    <!-- 身份签证模块 -->
+    <view class="module-card visa" bindtap="onQuickEntry" data-key="assess">
+      <view class="module-icon">🛂</view>
+      <view class="module-title">日本身份办理</view>
+      <view class="module-desc">经营管理签/高度人才/永住全套流程</view>
+      <view class="module-tags">
+        <text>积分计算</text>
+        <text>政策更新</text>
+        <text>文书模板</text>
+      </view>
+    </view>
+
+    <!-- 不动产投资模块 -->
+    <view class="module-card estate" bindtap="onQuickEntry" data-key="realEstateIssues">
+      <view class="module-icon">🏠</view>
+      <view class="module-title">不动产投资</view>
+      <view class="module-desc">收益测算/产权核验/风险排查全流程</view>
+      <view class="module-tags">
+        <text>14个痛点库</text>
+        <text>税费计算</text>
+        <text>收益评估</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 3. 快捷功能入口（按类别分组） -->
+  <view class="card">
+    <view class="section-title">🛠 通用工具</view>
+
+    <!-- 客户管理类 -->
+    <view class="group-title">👥 客户管理</view>
+    <view class="grid">
+      <view class="grid-item" data-key="intake" bindtap="onQuickEntry">
+        <view class="grid-icon">🎙</view>
+        <view class="grid-label">语音录入</view>
+      </view>
+      <view class="grid-item" data-key="lead" bindtap="onQuickEntry">
+        <view class="grid-icon">➕</view>
+        <view class="grid-label">新規線索</view>
+      </view>
+      <view class="grid-item" data-key="client" bindtap="onQuickEntry">
+        <view class="grid-icon">📋</view>
+        <view class="grid-label">顧客名簿</view>
+      </view>
+      <view class="grid-item" data-key="case" bindtap="onQuickEntry">
+        <view class="grid-icon">📚</view>
+        <view class="grid-label">案件台帳</view>
+      </view>
+    </view>
+
+    <!-- 智能工具类 -->
+    <view class="group-title">🤖 智能工具</view>
+    <view class="grid">
+      <view class="grid-item" data-key="plan" bindtap="onQuickEntry">
+        <view class="grid-icon">📊</view>
+        <view class="grid-label">AI方案生成</view>
+      </view>
+      <view class="grid-item" data-key="compare" bindtap="onQuickEntry">
+        <view class="grid-icon">⚖️</view>
+        <view class="grid-label">ルート比較</view>
+      </view>
+      <view class="grid-item" data-key="chat" bindtap="onQuickEntry">
+        <view class="grid-icon">💬</view>
+        <view class="grid-label">AI相談</view>
+      </view>
+      <view class="grid-item" data-key="reicalc" bindtap="onQuickEntry">
+        <view class="grid-icon">💰</view>
+        <view class="grid-label">利回り計算</view>
+      </view>
+    </view>
+
+    <!-- 政策研究类 -->
+    <view class="group-title">📜 知识库</view>
+    <view class="grid">
+      <view class="grid-item" data-key="policy" bindtap="onQuickEntry">
+        <view class="grid-icon">📅</view>
+        <view class="grid-label">政策年表</view>
+      </view>
+      <view class="grid-item" data-key="review" bindtap="onQuickEntry">
+        <view class="grid-icon">🔍</view>
+        <view class="grid-label">政策審査</view>
+      </view>
+      <view class="grid-item" data-key="caseLib" bindtap="onQuickEntry">
+        <view class="grid-icon">📖</view>
+        <view class="grid-label">事例集</view>
+      </view>
+      <view class="grid-item" data-key="dashboard" bindtap="onQuickEntry">
+        <view class="grid-icon">📈</view>
+        <view class="grid-label">統計</view>
+      </view>
+    </view>
+
+    <!-- 文书合规类 -->
+    <view class="group-title">📄 文书合规</view>
+    <view class="grid">
+      <view class="grid-item" data-key="doc" bindtap="onQuickEntry">
+        <view class="grid-icon">📝</view>
+        <view class="grid-label">文書作成</view>
+      </view>
+      <view class="grid-item" data-key="script" bindtap="onQuickEntry">
+        <view class="grid-icon">🎭</view>
+        <view class="grid-label">相談話術</view>
+      </view>
+      <view class="grid-item" data-key="fees" bindtap="onQuickEntry">
+        <view class="grid-icon">💴</view>
+        <view class="grid-label">費用見積</view>
+      </view>
+      <view class="grid-item" data-key="renewal" bindtap="onQuickEntry">
+        <view class="grid-icon">🔄</view>
+        <view class="grid-label">ビザ更新</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 3. 档期报告提醒 -->
+  <view class="card" wx:if="{{reportReminders.length}}">
+    <view class="section-title">📧 该给客户发档期报告了（{{reportReminders.length}}人）</view>
+    <view class="reminder-item" wx:for="{{reportReminders}}" wx:key="client_id" data-id="{{item.client_id}}" bindtap="goClient">
+      <view class="reminder-name">{{item.client_name}}</view>
+      <view class="reminder-meta">{{item.email}} · {{item.days_since_last}}天未推送</view>
+    </view>
+  </view>
+
+  <!-- 4. 最近跟进客户 -->
+  <view class="card" wx:if="{{recentClients.length}}">
+    <view class="section-title">
+      最近の顧客
+      <text class="section-more" bindtap="goClients">全部 ›</text>
+    </view>
+    <view class="client-item" wx:for="{{recentClients}}" wx:key="id"
+          data-id="{{item.id}}" bindtap="goClientDetail">
+      <view class="client-avatar">{{item.name[0]}}</view>
+      <view class="client-info">
+        <view class="client-name">{{item.name}} · <text class="client-path">{{item.path}}</text></view>
+        <view class="client-note">{{item.note}}</view>
+      </view>
+      <view class="client-deadline {{item.urgent ? 'urgent' : ''}}">{{item.deadline}}</view>
+    </view>
+  </view>
+
+  <!-- 5. 政策与新闻（合并到最下面） -->
+  <view class="card">
+    <view class="section-title">
+      📰 政策与新闻
+      <text class="section-more" bindtap="goTimeline">完整時間線 ›</text>
+    </view>
+
+    <!-- 最新政策 -->
+    <view class="policy-item" wx:for="{{recentPolicies}}" wx:key="id">
+      <view class="policy-row">
+        <text class="tag tag-{{item.direction}}">{{item.directionLabel}}</text>
+        <text class="policy-date">{{item.date}}</text>
+      </view>
+      <view class="policy-title">{{item.title}}</view>
+      <view class="policy-summary">{{item.summary}}</view>
+    </view>
+
+    <!-- 新闻风声 -->
+    <view class="news-item" wx:for="{{newsList}}" wx:key="_id" data-url="{{item.url}}" bindtap="openNews">
+      <view class="news-type {{item.source_type}}">{{item.source_type === 'rumor' ? '風評' : '公的'}}</view>
+      <view class="news-body">
+        <view class="news-title-ja">{{item.title_ja}}</view>
+        <view class="news-summary-zh" wx:if="{{item.summary_zh}}">{{item.summary_zh}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 6. 日本政府政策源（全部展示） -->
+  <view class="card">
+    <view class="section-title">
+      🇯🇵 日本政府政策源（共{{policySourceCount}}个官方来源）
+      <text class="section-more" bindtap="refreshRss">刷新 ›</text>
+    </view>
+    <view class="sites-grid">
+      <view class="site-tag" wx:for="{{policySites}}" wx:key="*this">{{item}}</view>
+    </view>
+    <view class="tip">AI 更新时会把以上全部官方地址交给大模型读取；来自它们的更新会写入本地政策库，并在「政策審査」「政策年表」中标注 AI 更新。</view>
+  </view>
+
+  <!-- 全局悬浮AI助手 -->
+  <global-ai-float></global-ai-float>
+
+</view>

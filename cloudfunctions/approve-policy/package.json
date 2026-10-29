@@ -1,0 +1,9 @@
+{
+  "name": "approve-policy",
+  "version": "1.0.0",
+  "description": "政策审核确认/驳回与结构化字段写入",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

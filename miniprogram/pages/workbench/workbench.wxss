@@ -1,0 +1,175 @@
+.page { padding-bottom: 40rpx; }
+
+.hero { padding: 48rpx 40rpx 32rpx; }
+.hero-hello { font-size: 44rpx; font-weight: 600; color: #2D2D2D; letter-spacing: 6rpx; }
+.hero-sub { font-size: 26rpx; color: #888; margin-top: 12rpx; letter-spacing: 1rpx; }
+.hero-line { width: 80rpx; height: 4rpx; background: #C04851; margin-top: 24rpx; }
+
+/* AI政策更新按钮 */
+.ai-update-banner {
+  display: flex; align-items: center;
+  margin: 0 32rpx 24rpx;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #4A3728 0%, #6B5344 100%);
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(74, 55, 40, 0.2);
+  transition: all 0.3s;
+}
+.ai-update-banner:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(74, 55, 40, 0.3);
+}
+.ai-update-banner.searching {
+  background: linear-gradient(135deg, #C04851 0%, #E06871 100%);
+  animation: pulse 1.5s infinite;
+}
+.ai-update-banner.case {
+  background: linear-gradient(135deg, #2D5F3F 0%, #4A8B5F 100%);
+}
+.ai-update-banner.case.searching {
+  background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4rpx 16rpx rgba(192, 72, 81, 0.3); }
+  50% { box-shadow: 0 4rpx 32rpx rgba(192, 72, 81, 0.6); }
+}
+.ai-update-icon { font-size: 48rpx; margin-right: 20rpx; }
+.ai-update-text { flex: 1; }
+.ai-update-title { font-size: 30rpx; color: #F8F4EC; font-weight: 600; }
+.ai-update-desc { font-size: 22rpx; color: #D4C4B0; margin-top: 6rpx; }
+.ai-update-arrow { font-size: 32rpx; color: #F8F4EC; }
+
+.policy-item { padding: 24rpx 0; border-bottom: 1rpx solid #e8e0d0; }
+.policy-item:last-child { border-bottom: none; }
+.policy-row { display: flex; align-items: center; gap: 16rpx; margin-bottom: 12rpx; }
+.policy-date { font-size: 24rpx; color: #999; }
+.policy-title { font-size: 30rpx; font-weight: 600; color: #2D2D2D; margin-bottom: 8rpx; }
+.policy-summary { font-size: 26rpx; color: #555; line-height: 1.7; }
+.grid { display: flex; flex-wrap: wrap; }
+.grid-item {
+  width: 25%; text-align: center;
+  padding: 20rpx 0; position: relative;
+}
+.grid-icon {
+  width: 96rpx; height: 96rpx; margin: 0 auto 12rpx;
+  background: #FDFBF6;
+  border: 1rpx solid #d8d0c0;
+  display: flex; align-items: center; justify-content: center;
+}
+.grid-label { font-size: 24rpx; color: #555; letter-spacing: 1rpx; }
+/* 线条图标（日式简洁线描风格） */
+/* 日历（政策年表） */
+/* 对话气泡（AI 相談） */
+/* 客户（顧客名簿） */
+/* 案件（案件台帳） */
+/* 案例库（事例集） */
+/* 计算器（点数計算） */
+/* 落地（落地支援） */
+/* 统计（統計） */
+/* 政策审核（審査） */
+/* 评估（個案評価）· 天秤 */
+/* 文书（文書作成）· 文件 */
+/* 资源（協力資源）· 人脉网络 */
+/* 话术（相談話術）· 书本 */
+/* 费用（費用見積）· 钱袋 */
+/* 利回り（不動産）· 柱状上涨 */
+/* 续签（ビザ更新）· 勾选清单 */
+.client-item {
+  display: flex; align-items: center;
+  padding: 24rpx 0; border-bottom: 1rpx solid #e8e0d0;
+}
+.client-item:last-child { border-bottom: none; }
+.client-avatar {
+  width: 80rpx; height: 80rpx;
+  background: #e8e0d0; color: #2D2D2D;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32rpx; font-weight: 600;
+  margin-right: 24rpx;
+}
+.client-info { flex: 1; }
+.client-name { font-size: 28rpx; font-weight: 600; color: #2D2D2D; }
+.client-path { color: #999; font-size: 24rpx; }
+.client-note { font-size: 24rpx; color: #888; margin-top: 6rpx; }
+.client-deadline { font-size: 24rpx; color: #999; }
+.client-deadline.urgent { color: #C04851; font-weight: 600; }
+
+/* 路径比较（ルート比較）· 双列对比 */
+.news-item { display: flex; padding: 16rpx 0; border-bottom: 1rpx solid #f0e8d8; }
+.news-item:last-child { border-bottom: none; }
+.news-type { font-size: 20rpx; padding: 4rpx 12rpx; height: 40rpx; line-height: 32rpx; margin-right: 16rpx; flex-shrink: 0; }
+.news-type.official { background: #e8efe8; color: #5A7A5A; }
+.news-type.rumor { background: #fbe8e8; color: #C04851; }
+.news-body { flex: 1; }
+.news-title-ja { font-size: 26rpx; color: #2D2D2D; line-height: 1.4; font-weight: 500; }
+.news-summary-zh { font-size: 24rpx; color: #666; line-height: 1.5; margin-top: 6rpx; padding-left: 12rpx; border-left: 3rpx solid #C04851; }
+/* 档期报告提醒 */
+.reminder-item { padding: 16rpx; background: #fff8e8; border-left: 4rpx solid #E8A838; margin-bottom: 10rpx; }
+.reminder-name { font-size: 26rpx; font-weight: 600; color: #2D2D2D; }
+.reminder-meta { font-size: 22rpx; color: #999; margin-top: 4rpx; }
+
+/* RSS源 */
+/* 今日待办 */
+.todo-item { display: flex; align-items: center; padding: 14rpx 0; border-bottom: 1rpx solid #f0ebe0; }
+.todo-priority { width: 60rpx; font-size: 20rpx; padding: 4rpx 8rpx; text-align: center; margin-right: 16rpx; border-radius: 4rpx; }
+.todo-priority.high { background: #C04851; color: #fff; }
+.todo-priority.medium { background: #E8A838; color: #fff; }
+.todo-priority.low { background: #ddd; color: #666; }
+.task-name { flex: 1; font-size: 24rpx; color: #444; }
+
+/* 分组标题 */
+.group-title { font-size: 22rpx; color: #999; margin: 20rpx 0 10rpx; padding-left: 8rpx; border-left: 3rpx solid #C04851; }
+
+/* 政策源网站标签 */
+.sites-grid { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 16rpx; }
+.site-tag { font-size: 20rpx; color: #4A3728; background: #F8F4EC; padding: 8rpx 16rpx; border-radius: 6rpx; border: 1rpx solid #E8E0D0; }
+.tip { font-size: 20rpx; color: #999; margin-top: 16rpx; line-height: 1.6; }
+
+/* 快捷入口图标 */
+.grid-icon { font-size: 36rpx; text-align: center; margin-bottom: 6rpx; }
+
+/* 双模块卡片 */
+.dual-module {
+  display: flex;
+  gap: 20rpx;
+  margin: 24rpx 32rpx;
+}
+.module-card {
+  flex: 1;
+  padding: 32rpx 24rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.08);
+}
+.module-card.visa {
+  background: linear-gradient(135deg, #4A3728 0%, #6B5344 100%);
+  color: #F8F4EC;
+}
+.module-card.estate {
+  background: linear-gradient(135deg, #C04851 0%, #D96B72 100%);
+  color: #F8F4EC;
+}
+.module-icon {
+  font-size: 48rpx;
+  margin-bottom: 16rpx;
+}
+.module-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+.module-desc {
+  font-size: 22rpx;
+  opacity: 0.9;
+  margin-bottom: 16rpx;
+  line-height: 1.5;
+}
+.module-tags {
+  display: flex;
+  gap: 8rpx;
+  flex-wrap: wrap;
+}
+.module-tags text {
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  background: rgba(255,255,255,0.2);
+  border-radius: 20rpx;
+}

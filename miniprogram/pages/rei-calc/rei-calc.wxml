@@ -1,0 +1,68 @@
+<!-- 不动产收益测算完整版 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">不動産利回り計算</view>
+    <view class="hero-sub">表面利回り · 実質利回り · 全コスト · 5/10年収益</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">物件与租金</view>
+    <view class="form-row"><text class="fk">物件价格（万日元）</text><input class="fi" type="number" value="{{form.price_wan}}" data-k="price_wan" bindinput="onInput" /></view>
+    <view class="form-row"><text class="fk">月租金（万日元）</text><input class="fi" type="number" value="{{form.rent_wan}}" data-k="rent_wan" bindinput="onInput" /></view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">持有成本</view>
+    <view class="form-row"><text class="fk">月管理费+修缮（日元）</text><input class="fi" type="number" value="{{form.mgmt}}" data-k="mgmt" bindinput="onInput" /></view>
+    <view class="form-row"><text class="fk">年固定资产税等（日元）</text><input class="fi" type="number" value="{{form.property_tax}}" data-k="property_tax" bindinput="onInput" /></view>
+    <view class="form-row"><text class="fk">空室率（%）</text><input class="fi" type="number" value="{{form.vacancy}}" data-k="vacancy" bindinput="onInput" /></view>
+    <view class="form-row"><text class="fk">托管费比例（%）</text><input class="fi" type="number" value="{{form.management_fee}}" data-k="management_fee" bindinput="onInput" /></view>
+    <view class="form-row"><text class="fk">年修缮预备金（日元）</text><input class="fi" type="number" value="{{form.repair_reserve}}" data-k="repair_reserve" bindinput="onInput" /></view>
+  </view>
+
+  <block wx:if="{{result}}">
+    <view class="yield-row">
+      <view class="yield-box">
+        <view class="yield-num">{{result.surface}}<text class="pct">%</text></view>
+        <view class="yield-label">表面利回り</view>
+      </view>
+      <view class="yield-box hi">
+        <view class="yield-num">{{result.effective}}<text class="pct">%</text></view>
+        <view class="yield-label">実質利回り</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">年收支明细（日元）</view>
+      <view class="kv"><text class="k">年租金总收入</text><text class="v">{{result.yearGross}}</text></view>
+      <view class="kv"><text class="k">管理费+修缮</text><text class="v">-{{result.yearMgmt}}</text></view>
+      <view class="kv"><text class="k">固定资产税等</text><text class="v">-{{result.pTax}}</text></view>
+      <view class="kv"><text class="k">空室损失</text><text class="v">-{{result.vacancyLoss}}</text></view>
+      <view class="kv"><text class="k">托管费</text><text class="v">-{{result.yearMgmtFee}}</text></view>
+      <view class="kv"><text class="k">修缮预备金</text><text class="v">-{{result.repairReserve}}</text></view>
+      <view class="kv total"><text class="k">年净收益</text><text class="v">{{result.yearNet}}</text></view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">一次性取得费用明细</view>
+      <view class="kv"><text class="k">中介费（3%+6万+税）</text><text class="v">{{result.brokerage}}</text></view>
+      <view class="kv"><text class="k">登记许可税（约2%）</text><text class="v">{{result.registrationTax}}</text></view>
+      <view class="kv"><text class="k">不动产取得税（约3%）</text><text class="v">{{result.acquisitionTax}}</text></view>
+      <view class="kv"><text class="k">印花税</text><text class="v">{{result.stampTax}}</text></view>
+      <view class="kv"><text class="k">取得费用合计</text><text class="v">{{result.acquisitionCost}}</text></view>
+      <view class="kv total"><text class="k">总投入（含取得费用）</text><text class="v">{{result.totalInvest}}</text></view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">中长期收益预估</view>
+      <view class="kv"><text class="k">5年总净收益（假设房价跌10%）</text><text class="v">{{result.fiveYearNet}}</text></view>
+      <view class="kv"><text class="k">10年总净收益（假设房价涨20%）</text><text class="v">{{result.tenYearNet}}</text></view>
+    </view>
+
+    <view class="card">
+      <view class="disclaimer">本测算为预估收益，不构成投资建议；实际收益受空置率、汇率、税制变化、修缮支出影响。</view>
+    </view>
+  </block>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

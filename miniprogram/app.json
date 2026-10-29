@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/workbench/workbench",
+    "pages/timeline/timeline",
+    "pages/chat/chat",
+    "pages/clients/clients",
+    "pages/client-detail/client-detail",
+    "pages/case-workbench/case-workbench",
+    "pages/calculator/calculator",
+    "pages/leads/leads",
+    "pages/case-new/case-new",
+    "pages/cases-library/cases-library",
+    "pages/case-lib-detail/case-lib-detail",
+    "pages/landing/landing",
+    "pages/dashboard/dashboard",
+    "pages/policy-review/policy-review",
+    "pages/assessment/assessment",
+    "pages/documents/documents",
+    "pages/partners/partners",
+    "pages/scripts/scripts",
+    "pages/fees/fees",
+    "pages/rei-calc/rei-calc",
+    "pages/renewal/renewal",
+    "pages/compare/compare",
+    "pages/news/news",
+    "pages/privacy/privacy",
+    "pages/profile/profile",
+    "pages/api-config/api-config",
+    "pages/knowledge-admin/knowledge-admin",
+    "pages/plan-generator/plan-generator",
+    "pages/client-intake/client-intake",
+    "pages/sources-admin/sources-admin",
+    "pages/real-estate-issues/real-estate-issues"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#FDFBF6",
+    "navigationBarTitleText": "投资日本 AI 小助理",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F2EB"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#4A3728",
+    "backgroundColor": "#FDFBF6",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/workbench/workbench",
+        "text": "工作台"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "global-ai-float": "./components/global-ai-float/global-ai-float",
+    "client-progress": "./components/client-progress/client-progress",
+    "policy-scroll-news": "./components/policy-scroll-news/policy-scroll-news"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

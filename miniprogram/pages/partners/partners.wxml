@@ -1,0 +1,63 @@
+<!-- 资源协作层 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">協力リソース</view>
+    <view class="hero-sub">行政書士 · 税理士 · 司法書士 · 銀行 · 中介</view>
+  </view>
+
+  <view class="filter-row">
+    <text class="filter {{type===item.key?'active':''}}" wx:for="{{types}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="setType">{{item.label}} {{counts[item.key] ? counts[item.key] : ''}}</text>
+  </view>
+
+  <view class="p-card" wx:for="{{list}}" wx:key="_id">
+    <view class="p-main">
+      <view class="p-avatar">{{item.name[0]}}</view>
+      <view class="p-info">
+        <view class="p-name">{{item.name}} <text class="p-type">{{typeLabel(item.type)}}</text></view>
+        <view class="p-city">{{item.city || '—'}} · {{item.specialty || '未填写专长'}}</view>
+        <view class="p-note" wx:if="{{item.note}}">{{item.note}}</view>
+      </view>
+      <view class="p-ops">
+        <view class="p-edit" data-id="{{item._id}}" catchtap="editItem">编辑</view>
+        <view class="p-del" data-id="{{item._id}}" catchtap="removeItem">删除</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && !error && list.length === 0}}">
+    <view class="empty-icon">—</view>
+    <view class="empty-text">暂无资源，点击下方添加合作方</view>
+  </view>
+  <view class="empty" wx:if="{{error}}">
+    <view class="empty-text">读取失败，请检查网络</view>
+    <view class="empty-btn" bindtap="load">重试</view>
+  </view>
+
+  <view class="add-btn" bindtap="openForm">+ 添加资源</view>
+
+  <!-- 表单弹层 -->
+  <view class="mask" wx:if="{{showForm}}" bindtap="closeForm">
+    <view class="form-panel" catchtap="">
+      <view class="form-title">{{form._id ? '编辑资源' : '添加资源'}}</view>
+      <view class="form-row"><text class="fk">名称</text><input class="fi" value="{{form.name}}" data-k="name" bindinput="onFormInput" /></view>
+      <view class="form-row">
+        <text class="fk">类型</text>
+        <picker range="{{['gyosei','tax','judicial','lawyer','bank','agency','other']}}"
+                value="{{form.type === 'gyosei' ? 0 : form.type === 'tax' ? 1 : form.type === 'judicial' ? 2 : form.type === 'lawyer' ? 3 : form.type === 'bank' ? 4 : form.type === 'agency' ? 5 : 6}}"
+                bindchange="onTypeChange">
+          <view class="picker-val">{{typeLabel(form.type)}}</view>
+        </picker>
+      </view>
+      <view class="form-row"><text class="fk">城市</text><input class="fi" value="{{form.city}}" data-k="city" bindinput="onFormInput" /></view>
+      <view class="form-row"><text class="fk">专长</text><input class="fi" value="{{form.specialty}}" data-k="specialty" bindinput="onFormInput" /></view>
+      <view class="form-row"><text class="fk">备注</text><input class="fi" value="{{form.note}}" data-k="note" bindinput="onFormInput" /></view>
+      <view class="form-btns">
+        <view class="btn-cancel" bindtap="closeForm">取消</view>
+        <view class="btn-save" bindtap="save">保存</view>
+      </view>
+    </view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

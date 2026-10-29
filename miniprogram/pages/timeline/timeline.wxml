@@ -1,0 +1,116 @@
+<!-- 政策时间线 -->
+<view class="page">
+
+  <scroll-view scroll-x class="cat-bar">
+    <view class="cat-item {{currentCat===item.key?'active':''}}"
+          wx:for="{{categories}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="switchCat">
+      {{item.label}}
+    </view>
+  </scroll-view>
+
+  <view class="ai-summary" wx:if="{{aiCount > 0}}">
+    本地已收录 {{aiCount}} 条 AI 更新的政策（来自官网清单核查）
+  </view>
+
+  <!-- 现行政策摘要（随分类切换） -->
+  <view class="current-banner" wx:if="{{currentCat==='business_manager'}}">
+    <view class="current-label">现行政策（2025-10-16 起）</view>
+    <view class="current-main">資本金 3000 万円 · 常勤職員 1 名 · 日本語 B2（申請人または従業員）· 専門家確認</view>
+    <view class="current-hint">法人=資本金／個人事業主=投下資金総額；2028-10-16 まで移行期間</view>
+  </view>
+  <view class="current-banner" wx:elif="{{currentCat==='hsp'}}">
+    <view class="current-label">现行政策</view>
+    <view class="current-main">高度専門職 1 号：70 分で申請 · 80 分で 1 年永住</view>
+    <view class="current-hint">更新時も 70 分維持必要；J-Skip：年収 2000 万 + 修士で 1 年永住</view>
+  </view>
+  <view class="current-banner" wx:elif="{{currentCat==='permanent_residence'}}">
+    <view class="current-label">现行要件（2026-02-24 改訂）</view>
+    <view class="current-main">原則 10 年在留（就労資格 5 年）· 品行端正 · 独立生计 · 納税履行</view>
+    <view class="current-hint">高度人才 70 分 3 年 / 80 分 1 年；令和9年3月31日まで 3 年も最長扱い</view>
+  </view>
+  <view class="current-banner" wx:else>
+    <view class="current-label">现行原则（2025-2026 新规）</view>
+    <view class="current-main">外国人取得不动产原则上无国籍限制 · 无黄金签证挂钩</view>
+    <view class="current-hint">新增：2025-07 国籍申报 · 2026-04 外汇法 20 日报告 · 2026-10 登记申报国籍</view>
+  </view>
+
+  <view class="timeline">
+    <view class="t-node" wx:for="{{nodes}}" wx:key="_id">
+      <view class="t-axis">
+        <view class="t-dot dot-{{item.direction}}"></view>
+        <view class="t-line"></view>
+      </view>
+      <view class="t-card {{item.is_current ? 'current' : ''}}" bindtap="toggleNode" data-id="{{item._id}}">
+        <view class="t-date">{{item.event_date}}</view>
+        <view class="t-title">
+          <text class="tag tag-{{item.direction}}">{{item.directionLabel}}</text>
+          <text class="tag tag-ai" wx:if="{{item.isAI}}">AI 更新</text>
+          {{item.title}}
+        </view>
+        <view class="t-summary">{{item.summary}}</view>
+
+        <view class="t-source" wx:if="{{item.source}}">
+          依据：{{item.source}}
+          <text class="cite" data-url="{{item.url}}" catchtap="openSource">查看原文 ›</text>
+        </view>
+        <view class="t-source" wx:if="{{item.isAI && !item.verified}}">
+          <text class="cite warn">该条未被模型确认读取原文，请人工核验</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史溯源对比：由 policy_versions 数据库驱动 -->
+  <view class="version-block" wx:if="{{versions.length > 0}}">
+    <view class="v-head">
+      <view class="v-title">历史溯源 · 版本对比</view>
+      <view class="v-hint">从 {{versions[0].version_label}} 到现行，逐版本核验</view>
+    </view>
+    <scroll-view scroll-x class="v-table-scroll">
+      <view class="v-table">
+        <view class="v-row v-row-head">
+          <view class="v-cell v-fixed">要件</view>
+          <view class="v-cell" wx:for="{{versions}}" wx:key="version_date">{{item.version_label}}</view>
+        </view>
+        <view class="v-row">
+          <view class="v-cell v-fixed">資本金</view>
+          <view class="v-cell" wx:for="{{versions}}" wx:key="version_date">{{item.capital}}</view>
+        </view>
+        <view class="v-row">
+          <view class="v-cell v-fixed">常勤職員</view>
+          <view class="v-cell" wx:for="{{versions}}" wx:key="version_date">{{item.employee}}</view>
+        </view>
+        <view class="v-row">
+          <view class="v-cell v-fixed">日本語</view>
+          <view class="v-cell" wx:for="{{versions}}" wx:key="version_date">{{item.japanese}}</view>
+        </view>
+        <view class="v-row">
+          <view class="v-cell v-fixed">専門家確認</view>
+          <view class="v-cell" wx:for="{{versions}}" wx:key="version_date">{{item.expert}}</view>
+        </view>
+        <view class="v-row">
+          <view class="v-cell v-fixed">経営経験</view>
+          <view class="v-cell" wx:for="{{versions}}" wx:key="version_date">{{item.experience}}</view>
+        </view>
+        <view class="v-row">
+          <view class="v-cell v-fixed">自宅兼用</view>
+          <view class="v-cell" wx:for="{{versions}}" wx:key="version_date">{{item.home}}</view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="v-note">对比数据由「policy_versions」集合动态生成，政策更新只改数据不改代码。</view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && !error && nodes.length===0}}">
+    <view class="empty-icon">—</view>
+    <view class="empty-text">該当カテゴリの政策データがありません</view>
+  </view>
+  <view class="empty" wx:if="{{error}}">
+    <view class="empty-text">読み込みに失敗しました。ネットワークをご確認ください</view>
+    <view class="empty-btn" bindtap="loadTimeline">再試行</view>
+  </view>
+
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

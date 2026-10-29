@@ -1,0 +1,67 @@
+<!-- AI方案生成器 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">🤖 AI方案生成器</view>
+    <view class="hero-sub">描述客户情况，AI自动出可操作方案，顾问只需修正</view>
+  </view>
+
+  <!-- 客户描述输入 -->
+  <view class="card">
+    <view class="section-title">📝 客户描述</view>
+    <textarea class="desc-input" placeholder="例如：客户35岁，IT工程师，年收800万日元，硕士学历，日语N2，想申请日本签证..."
+              value="{{description}}" bindinput="onDescInput" auto-height />
+    <view class="btn primary" bindtap="generatePlan">🚀 生成方案</view>
+  </view>
+
+  <!-- 生成结果 -->
+  <view class="card" wx:if="{{plan}}">
+    <view class="section-title">📋 方案结果</view>
+
+    <view class="plan-row">
+      <text class="plan-lbl">推荐路径</text>
+      <text class="plan-val">{{plan.recommended_path}}</text>
+    </view>
+
+    <view class="plan-row">
+      <text class="plan-lbl">可行性</text>
+      <text class="plan-val level-{{plan.feasibility_level}}">{{plan.feasibility_level}}（{{plan.feasibility_score}}分）</text>
+    </view>
+
+    <view class="plan-section" wx:if="{{plan.key_advantages.length}}">
+      <view class="plan-section-title">✅ 优势</view>
+      <view class="plan-item" wx:for="{{plan.key_advantages}}" wx:key="*this">{{item}}</view>
+    </view>
+
+    <view class="plan-section" wx:if="{{plan.key_risks.length}}">
+      <view class="plan-section-title">⚠️ 风险</view>
+      <view class="plan-item warn" wx:for="{{plan.key_risks}}" wx:key="*this">{{item}}</view>
+    </view>
+
+    <view class="plan-section" wx:if="{{plan.required_documents.length}}">
+      <view class="plan-section-title">📄 所需材料</view>
+      <view class="plan-item" wx:for="{{plan.required_documents}}" wx:key="*this">{{item}}</view>
+    </view>
+
+    <view class="plan-section" wx:if="{{plan.timeline.length}}">
+      <view class="plan-section-title">⏱️ 时间线</view>
+      <view class="timeline-row" wx:for="{{plan.timeline}}" wx:key="stage">
+        <text class="tl-stage">{{item.stage}}</text>
+        <text class="tl-duration">{{item.duration}}</text>
+      </view>
+    </view>
+
+    <view class="plan-section" wx:if="{{plan.budget_estimate}}">
+      <view class="plan-section-title">💰 预算估算</view>
+      <view class="budget-row">服务费：{{plan.budget_estimate.service_fee}}</view>
+      <view class="budget-row">官方费用：{{plan.budget_estimate.government_fee}}</view>
+      <view class="budget-row">其他：{{plan.budget_estimate.other_costs}}</view>
+    </view>
+
+    <view class="plan-section" wx:if="{{plan.next_actions.length}}">
+      <view class="plan-section-title">➡️ 下一步</view>
+      <view class="plan-item" wx:for="{{plan.next_actions}}" wx:key="*this">{{item}}</view>
+    </view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

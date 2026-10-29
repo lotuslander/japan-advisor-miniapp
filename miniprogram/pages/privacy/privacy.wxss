@@ -1,0 +1,7 @@
+.page { padding-bottom: 40rpx; }
+.hero { background: #C04851; padding: 48rpx 40rpx; color: #FDFBF6; }
+.hero-title { font-size: 34rpx; font-weight: 600; letter-spacing: 2rpx; }
+.hero-sub { font-size: 24rpx; opacity: 0.85; margin-top: 8rpx; }
+.card { background: #FDFBF6; margin: 24rpx; border: 1rpx solid #e0d8c8; padding: 32rpx; }
+.section-title { font-size: 28rpx; font-weight: 600; margin-bottom: 16rpx; letter-spacing: 2rpx; }
+.p-text { font-size: 26rpx; line-height: 1.7; color: #444; }

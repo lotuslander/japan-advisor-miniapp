@@ -1,0 +1,19 @@
+.ai-float-btn {
+  position: fixed;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  background: linear-gradient(135deg, #4A3728 0%, #6B4F3A 100%);
+  box-shadow: 0 8rpx 24rpx rgba(74, 55, 40, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  border: 2rpx solid rgba(255,255,255,0.2);
+}
+.ai-float-text {
+  color: #F8F4EC;
+  font-size: 36rpx;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+}

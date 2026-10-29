@@ -1,0 +1,47 @@
+<!-- 客户库列表 -->
+<view class="page">
+  <view class="top-bar">
+    <view class="search-wrap">
+      <input class="search" placeholder="搜索客户姓名/职业/标签"
+             value="{{keyword}}" bindinput="onSearchInput"
+             bindconfirm="onSearchConfirm" confirm-type="search" />
+      <text class="search-clear" wx:if="{{keyword}}" bindtap="clearSearch">×</text>
+    </view>
+    <view class="add-btn" bindtap="goNewLead">+ 新線索</view>
+  </view>
+
+  <view class="data-row">
+    <view class="data-btn" bindtap="exportCsv">导出 CSV</view>
+    <view class="data-btn" bindtap="importCsv">导入 CSV</view>
+    <view class="data-hint">导入表头：name,occupation,annual_income_jpy,tags,initial_intent（tags 用；分隔）</view>
+  </view>
+
+  <view class="filter-row">
+    <text class="filter {{filter==='all'?'active':''}}" data-f="all" bindtap="setFilter">全部 {{counts.all}}</text>
+    <text class="filter {{filter==='active'?'active':''}}" data-f="active" bindtap="setFilter">進行中 {{counts.active}}</text>
+    <text class="filter {{filter==='closed'?'active':''}}" data-f="closed" bindtap="setFilter">已結案</text>
+  </view>
+
+  <view class="client-card" wx:for="{{list}}" wx:key="_id" data-id="{{item._id}}" bindtap="goDetail">
+    <view class="avatar">{{item.name[0]}}</view>
+    <view class="info">
+      <view class="name-row">
+        <text class="name">{{item.name}}</text>
+        <text class="stage-tag stage-{{item.stage}}">{{item.stageLabel}}</text>
+      </view>
+      <view class="meta">{{item.occupation || '职业待补充'}} · {{item.annual_income_jpy ? item.annual_income_jpy + '円' : '年收待补充'}}</view>
+      <view class="last-follow">标签：{{item.tags}} <text class="overdue" wx:if="{{item.overdue}}">· 待跟进</text></view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && !error && list.length === 0}}">
+    <view class="empty-icon">—</view>
+    <view class="empty-text">{{keyword ? '未找到匹配客户' : '暂无客户，新增线索自动建档'}}</view>
+  </view>
+  <view class="empty" wx:if="{{error}}">
+    <view class="empty-text">读取失败，请检查网络</view>
+    <view class="empty-btn" bindtap="loadClients">重试</view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

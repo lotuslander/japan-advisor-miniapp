@@ -1,0 +1,42 @@
+<!-- 数据统计 -->
+<view class="page">
+  <view class="kpi-grid">
+    <view class="kpi-card"><view class="num">{{stats.activeCases}}</view><view class="label">在辦案件</view></view>
+    <view class="kpi-card"><view class="num">{{stats.pendingTasks}}</view><view class="label">待办任务</view></view>
+    <view class="kpi-card"><view class="num">{{stats.pendingLeads}}</view><view class="label">待跟进線索</view></view>
+    <view class="kpi-card"><view class="num">{{stats.closedCases}}</view><view class="label">已結案</view></view>
+  </view>
+
+  <view class="kpi-grid">
+    <view class="kpi-card"><view class="num">{{stats.leadConv}}%</view><view class="label">線索→客戶轉化率</view></view>
+    <view class="kpi-card"><view class="num">{{stats.totalLeads}}</view><view class="label">累計線索</view></view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">案件路径分布</view>
+    <view class="bar-row" wx:for="{{pathDist}}" wx:key="label">
+      <view class="bar-label">{{item.label}}</view>
+      <view class="bar-track"><view class="bar-fill" style="width: {{item.count > 0 ? Math.max(item.count * 10, 10) : 2}}%"></view></view>
+      <view class="bar-num">{{item.count}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">案件阶段分布</view>
+    <view class="bar-row" wx:for="{{stageBars}}" wx:key="label">
+      <view class="bar-label">{{item.label}}</view>
+      <view class="bar-track"><view class="bar-fill" style="width: {{item.pct}}%"></view></view>
+      <view class="bar-num">{{item.count}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">近期结案反哺</view>
+    <view class="feed-item" wx:for="{{feed}}" wx:key="title">
+      <view class="feed-title">{{item.title}}</view>
+      <view class="feed-meta">{{item.date}} · {{item.type}}</view>
+    </view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

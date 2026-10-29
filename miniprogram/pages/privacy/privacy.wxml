@@ -1,0 +1,39 @@
+<!-- 隐私说明 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">隐私与数据保护</view>
+    <view class="hero-sub">纯本地运行 · 数据不离开您的手机</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">数据存储</view>
+    <view class="p-text">本工具为纯本地应用，所有客户数据、聊天记录、配置信息均仅存储在您的手机本地，不上传任何服务器。换手机时请使用"导出数据"功能备份。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">数据范围</view>
+    <view class="p-text">本工具处理的数据包括：客户姓名、职业、年收入、预算、签证意向、跟进记录、案件材料状态。不含证件扫描件原件。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">AI对话说明</view>
+    <view class="p-text">AI对话功能需要调用您配置的大模型API（如智谱AI），对话内容会发送到该API服务商。请选择您信任的服务商，并遵守其数据政策。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">免责声明</view>
+    <view class="p-text">本工具仅为辅助工具，提供的政策信息、案例参考、方案建议均不构成法律意见或签证承诺。实际申请请以日本出入国在留管理厅官方审查为准。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">政策数据来源</view>
+    <view class="p-text">政策内容来自日本出入国在留管理厅、法务省、国土交通省、国税厅等官方公开页面。本工具不对数据的实时性和准确性做保证，请以官方最新发布为准。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">合规依据</view>
+    <view class="p-text">顾问应取得客户同意后方可录入敏感信息，并定期清理已结案客户的冗余资料。遵守《中华人民共和国个人信息保护法》相关规定。</view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

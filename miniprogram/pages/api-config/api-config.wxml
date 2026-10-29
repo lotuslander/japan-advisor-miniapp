@@ -1,0 +1,69 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">AI モデル設定</view>
+    <view class="hero-sub">填入你自己的 API Key，数据私有可控；不填则用云端默认Key</view>
+  </view>
+
+  <!-- 服务商选择 -->
+  <view class="section">
+    <view class="section-title">选择服务商</view>
+    <scroll-view scroll-x class="providers">
+      <view class="provider {{selectedIdx === index ? 'active' : ''}}"
+            wx:for="{{providers}}" wx:key="name"
+            data-idx="{{index}}" bindtap="pickProvider">
+        <view class="p-color" style="background:{{item.color}}"></view>
+        <view class="p-name">{{item.name}}</view>
+        <view class="p-tag">{{item.tag}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 当前选中服务商详情 -->
+  <view class="section" wx:if="{{providers[selectedIdx]}}">
+    <view class="section-title">{{providers[selectedIdx].name}}</view>
+    <view class="info-row"><text class="lbl">Base URL</text><text class="val">{{providers[selectedIdx].baseUrl}}</text></view>
+    <view class="info-row"><text class="lbl">可用模型</text><text class="val">{{providers[selectedIdx].models}}</text></view>
+    <view class="info-row"><text class="lbl">价格</text><text class="val">{{providers[selectedIdx].price}}</text></view>
+
+    <!-- 白名单提示 -->
+    <view class="whitelist-tip">
+      上线前只需把「当前所选模型」这一个域名加入微信公众平台白名单：
+      <view class="whitelist-domain">{{whitelistDomain}}</view>
+      <view class="whitelist-note">日本官网政策抓取由大模型自行完成，无需把政策网站逐个加入白名单；该白名单可在你的其他端侧小程序中直接复用。</view>
+    </view>
+
+    <view class="guide-link" bindtap="copyGuide">📋 复制开通指引</view>
+  </view>
+
+  <!-- 配置表单 -->
+  <view class="section">
+    <view class="section-title">API Key</view>
+    <view class="input-row">
+      <input password="{{!showKey}}" placeholder="粘贴你的 API Key" value="{{apiKey}}" bindinput="onKeyInput" />
+      <text class="toggle" bindtap="toggleShow">{{showKey ? '隐藏' : '显示'}}</text>
+    </view>
+    <view class="input-label">模型名（默认 {{providers[selectedIdx].defaultModel}}）</view>
+    <input class="model-input" placeholder="模型名" value="{{model}}" bindinput="onModelInput" />
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <view class="btn primary {{saving ? 'disabled' : ''}}" bindtap="save">💾 保存配置</view>
+    <view class="btn outline {{testing ? 'disabled' : ''}}" bindtap="test">🔌 测试连通</view>
+    <view class="btn danger" bindtap="clear">🗑 清除</view>
+  </view>
+
+  <view class="test-result" wx:if="{{testResult}}">{{testResult}}</view>
+
+  <view class="section tip">
+    <view class="section-title">说明</view>
+    <view class="tip-text">
+      1. 配置后你的Key优先使用，数据不经过云端公共Key\n
+      2. 不配置则自动使用云端默认Key（智谱glm-4-flash）\n
+      3. Key只保存在你手机本地，不会上传\n
+      4. 商用建议用自己的Key，避免共用额度超限
+    </view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

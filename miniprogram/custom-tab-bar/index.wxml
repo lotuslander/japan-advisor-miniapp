@@ -1,0 +1,13 @@
+<!-- 自定义tabBar -->
+<view class="tabbar">
+  <view class="tabbar-inner">
+    <view class="tab-item {{selected === 0 ? 'active' : ''}}" bindtap="goWorkbench">
+      <view class="tab-icon">🖥️</view>
+      <view class="tab-label">工作台</view>
+    </view>
+    <view class="tab-item {{selected === 1 ? 'active' : ''}}" bindtap="goProfile">
+      <view class="tab-icon">👤</view>
+      <view class="tab-label">我的</view>
+    </view>
+  </view>
+</view>

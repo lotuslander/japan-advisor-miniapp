@@ -1,0 +1,42 @@
+.page { display: flex; flex-direction: column; height: 100vh; background: #F8F4EC; }
+.chat-list { flex: 1; padding: 24rpx; }
+.msg-row { display: flex; margin-bottom: 24rpx; }
+.msg-row.mine { justify-content: flex-end; }
+.bubble { max-width: 80%; padding: 20rpx 28rpx; font-size: 28rpx; line-height: 1.8; }
+.bubble-text { white-space: pre-wrap; word-wrap: break-word; }
+.mine .bubble { background: #C04851; color: #FDFBF6; }
+.bot .bubble { background: #FDFBF6; border: 1rpx solid #e0d8c8; }
+.citations {
+  margin-top: 16rpx; padding-top: 16rpx;
+  border-top: 1rpx dashed #d0c8b8;
+  font-size: 22rpx; color: #999;
+}
+.cite-title { color: #C04851; margin-bottom: 8rpx; }
+
+.input-bar {
+  display: flex; align-items: center;
+  padding: 16rpx 24rpx; background: #FDFBF6;
+  border-top: 1rpx solid #e0d8c8;
+}
+.input { flex: 1; background: #F8F4EC; padding: 16rpx 24rpx; font-size: 28rpx; }
+.send-btn {
+  margin-left: 16rpx; padding: 16rpx 32rpx;
+  background: #C04851; color: #FDFBF6; font-size: 28rpx;
+}
+.send-btn.disabled { opacity: 0.4; }
+
+/* 快捷指令按钮 */
+.quick-actions {
+  display: flex; flex-wrap: wrap; gap: 16rpx;
+  padding: 16rpx 24rpx; background: #F8F4EC;
+  border-top: 1rpx solid #e0d8c8;
+}
+.quick-btn {
+  padding: 12rpx 24rpx; background: #FDFBF6;
+  border: 1rpx solid #4A3728; border-radius: 32rpx;
+  font-size: 24rpx; color: #4A3728;
+}
+.quick-btn:active { background: #4A3728; color: #F8F4EC; }
+
+/* AI 引用来源列表（wxml 使用了 .cite-item 但此前未定义） */
+.cite-item { font-size: 22rpx; color: #1F3A5F; background: #EEF3F8; border-left: 4rpx solid #1F3A5F; padding: 10rpx 14rpx; margin: 8rpx 0; word-break: break-all; }

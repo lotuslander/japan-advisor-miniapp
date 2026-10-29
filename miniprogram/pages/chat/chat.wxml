@@ -1,0 +1,32 @@
+<!-- AI 政策咨询 -->
+<view class="page">
+  <scroll-view scroll-y class="chat-list" scroll-into-view="{{scrollTo}}" scroll-with-animation>
+    <view class="msg-row {{item.role === 'user' ? 'mine' : 'bot'}}" wx:for="{{messages}}" wx:key="id">
+      <view class="bubble">
+        <view class="bubble-text">{{item.content}}</view>
+        <view class="citations" wx:if="{{item.role === 'bot' && item.citations && item.citations.length}}">
+          <view class="cite-title">依据原文：</view>
+          <view class="cite-item" wx:for="{{item.citations}}" wx:for-item="c" wx:key="url">
+            · {{c.source}} · {{c.date}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view id="bottom-anchor"></view>
+  </scroll-view>
+
+  <!-- 快捷指令 -->
+  <view class="quick-actions" wx:if="{{messages.length <= 1}}">
+    <view class="quick-btn" wx:for="{{quickActions}}" wx:key="label" data-prompt="{{item.prompt}}" bindtap="onQuickAction">
+      {{item.label}}
+    </view>
+  </view>
+
+  <view class="input-bar">
+    <input class="input" placeholder="問政策、問条件、問对比…"
+           value="{{input}}" bindinput="onInput" confirm-type="send" bindconfirm="onSend" />
+    <view class="send-btn {{input ? '' : 'disabled'}}" bindtap="onSend">送信</view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

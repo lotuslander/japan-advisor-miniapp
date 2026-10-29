@@ -1,0 +1,83 @@
+<!-- 资格测算器 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">高度人材點数計算</view>
+    <view class="hero-sub">70 点可申 HSP1 号 · 80 点加速永住（1 年）</view>
+  </view>
+
+  <view class="score-card">
+    <view class="score-num">{{totalScore}}</view>
+    <view class="score-label">当前估算分</view>
+    <view class="score-result {{verdictClass}}" wx:if="{{verdict}}">{{verdict}}</view>
+  </view>
+
+  <view class="card">
+    <view class="group-title">学歴</view>
+    <radio-group bindchange="onChange" data-field="education">
+      <label class="opt"><radio value="0" checked="{{form.education === 0}}" /> 其他</label>
+      <label class="opt"><radio value="10" checked="{{form.education === 10}}" /> 学士</label>
+      <label class="opt"><radio value="20" checked="{{form.education === 20}}" /> 硕士</label>
+      <label class="opt"><radio value="30" checked="{{form.education === 30}}" /> 博士</label>
+    </radio-group>
+  </view>
+
+  <view class="card">
+    <view class="group-title">職歴</view>
+    <radio-group bindchange="onChange" data-field="experience">
+      <label class="opt"><radio value="0" checked="{{form.experience === 0}}" /> 3 年未満</label>
+      <label class="opt"><radio value="10" checked="{{form.experience === 10}}" /> 3 年</label>
+      <label class="opt"><radio value="20" checked="{{form.experience === 20}}" /> 5 年</label>
+      <label class="opt"><radio value="25" checked="{{form.experience === 25}}" /> 7 年</label>
+      <label class="opt"><radio value="30" checked="{{form.experience === 30}}" /> 10 年</label>
+    </radio-group>
+  </view>
+
+  <view class="card">
+    <view class="group-title">年收（万日元）</view>
+    <slider min="300" max="3000" step="100" value="{{form.income}}" show-value
+            activeColor="#C04851" bindchange="onIncome" />
+    <view class="hint">年收积分随年龄分档：29歳以下从 300 万起算 · 30-34 从 400 万 · 35-39 从 500 万 · 40 岁以上从 600 万，每 100 万 +5 分</view>
+  </view>
+
+  <view class="card">
+    <view class="group-title">年龄</view>
+    <slider min="25" max="45" value="{{form.age}}" show-value activeColor="#C04851" bindchange="onAge" />
+    <view class="hint">29歳以下 +15 · 30-34 +10 · 35-39 +5 · 40 岁以上 0</view>
+  </view>
+
+  <view class="card">
+    <view class="group-title">日語能力</view>
+    <radio-group bindchange="onChange" data-field="japanese">
+      <label class="opt"><radio value="0" checked="{{form.japanese === 0}}" /> 无 / N3</label>
+      <label class="opt"><radio value="15" checked="{{form.japanese === 15}}" /> N1</label>
+      <label class="opt"><radio value="10" checked="{{form.japanese === 10}}" /> N2</label>
+    </radio-group>
+  </view>
+
+  <view class="card">
+    <view class="group-title">加分项（多选）</view>
+    <checkbox-group bindchange="onBonus">
+      <label class="opt"><checkbox value="10" checked="{{form.bonus.includes(10)}}" /> 世界 Top300 大学（QS 等）+10</label>
+      <label class="opt"><checkbox value="10" checked="{{form.bonus.includes(10)}}" /> 日本指定大学卒業 +10</label>
+      <label class="opt"><checkbox value="5" checked="{{form.bonus.includes(5)}}" /> 日本語 N1 且毕业指定大学 +10（近似按 N1 计）</label>
+      <label class="opt"><checkbox value="10" checked="{{form.bonus.includes(10)}}" /> 地方创生（三大都市圈外就劳）+10</label>
+    </checkbox-group>
+    <view class="hint">加分项需提供证明材料，最终以入管厅审查为准</view>
+  </view>
+
+  <view class="card">
+    <view class="group-title">同步到客户档案</view>
+    <picker range="{{clientNames}}" bindchange="onPickClient">
+      <view class="hint">{{clientIdx >= 0 ? clientNames[clientIdx] : (clientNames.length ? '点击选择客户' : '暂无客户，请先在客户页新增')}}</view>
+    </picker>
+    <view class="hint">选择客户后，点下方按钮会把本次积分测算结果写入该客户档案。</view>
+  </view>
+
+  <view class="note">
+    本测算依据入管厅高度人才积分制口径（学历/职历/年收×年龄/日语/加分项），为顾问辅助估算。
+    实际积分以入管厅公布的最新积分计算表为准。
+  </view>
+  <view class="save-btn" bindtap="saveToClient">保存到客户档案</view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

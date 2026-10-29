@@ -1,0 +1,22 @@
+<!-- 话术库 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">相談スクリプト</view>
+    <view class="hero-sub">常见咨询应答要点 · 客观口径可追溯</view>
+  </view>
+
+  <view class="cat-row">
+    <text class="cat {{cat===item.key?'active':''}}" wx:for="{{cats}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="setCat">{{item.label}}</text>
+  </view>
+
+  <view class="card" wx:for="{{items}}" wx:key="i">
+    <view class="qa-q" data-i="{{item.i}}" bindtap="toggle">{{item.q}}</view>
+    <block wx:if="{{expanded[item.i]}}">
+      <view class="qa-a">{{item.a}}</view>
+      <view class="qa-copy" data-a="{{item.a}}" catchtap="copyA">复制应答</view>
+    </block>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

@@ -1,0 +1,7 @@
+<view class="ai-float-btn" 
+      style="left: {{x}}px; top: {{y}}px;"
+      bindtouchstart="onTouchStart"
+      bindtouchmove="onTouchMove"
+      bindtouchend="onTouchEnd">
+  <text class="ai-float-text">AI</text>
+</view>

@@ -1,0 +1,9 @@
+{
+  "name": "get-news",
+  "version": "1.0.0",
+  "description": "工作台滚动新闻",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

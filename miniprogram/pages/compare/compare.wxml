@@ -1,0 +1,25 @@
+<!-- 路径条件对比矩阵 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">申請ルート比較</view>
+    <view class="hero-sub">四大路径硬性条件并排 · 谈客户时直接展示</view>
+  </view>
+
+  <view class="col-head">
+    <view class="col-label">对比项</view>
+    <view class="col-item c-bm">経営管理</view>
+    <view class="col-item c-hsp">高度人材</view>
+    <view class="col-item c-pr">永住</view>
+    <view class="col-item c-re">不動産</view>
+  </view>
+
+  <view class="row" wx:for="{{rows}}" wx:key="label">
+    <view class="row-label">{{item.label}}</view>
+    <view class="cell c-bm">{{item.cells[0]}}</view>
+    <view class="cell c-hsp">{{item.cells[1]}}</view>
+    <view class="cell c-pr">{{item.cells[2]}}</view>
+    <view class="cell c-re">{{item.cells[3]}}</view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

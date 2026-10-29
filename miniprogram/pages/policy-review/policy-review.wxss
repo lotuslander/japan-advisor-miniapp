@@ -1,0 +1,38 @@
+.page { padding-bottom: 40rpx; }
+.hero { background: #C04851; padding: 48rpx 40rpx; color: #FDFBF6; }
+.hero-title { font-size: 34rpx; font-weight: 600; line-height: 1.5; letter-spacing: 1rpx; }
+.hero-sub { font-size: 24rpx; opacity: 0.85; margin-top: 8rpx; }
+
+.card { background: #FDFBF6; margin: 24rpx; border: 1rpx solid #e0d8c8; padding: 32rpx; }
+.section-title { font-size: 28rpx; font-weight: 600; margin-bottom: 16rpx; letter-spacing: 2rpx; }
+
+.p-row { display: flex; align-items: center; margin-bottom: 12rpx; }
+.badge { padding: 2rpx 14rpx; font-size: 20rpx; margin-right: 12rpx; }
+.badge-pend { background: #F3E8D6; color: #B08A5A; }
+.badge-rej { background: #EEE; color: #999; }
+.p-date { font-size: 22rpx; color: #999; margin-right: 16rpx; }
+.p-cat { font-size: 22rpx; color: #7A6A55; }
+.p-title { font-size: 28rpx; font-weight: 600; line-height: 1.5; }
+.p-source { font-size: 22rpx; color: #999; margin-top: 8rpx; }
+.p-ai { font-size: 20rpx; color: #5A7A5A; margin-top: 8rpx; }
+
+.p-text { font-size: 26rpx; line-height: 1.7; color: #333; }
+.p-text.ai { color: #5A7A5A; background: #F6F1E6; padding: 16rpx; }
+.p-url { font-size: 24rpx; color: #C04851; margin-top: 16rpx; text-decoration: underline; }
+
+.form-row { display: flex; align-items: center; padding: 16rpx 0; border-bottom: 1rpx solid #f0e8d8; }
+.fk { width: 300rpx; font-size: 24rpx; color: #666; flex-shrink: 0; }
+.fi { flex: 1; font-size: 26rpx; }
+.ft { flex: 1; font-size: 26rpx; min-height: 80rpx; }
+
+.btn-row { display: flex; gap: 24rpx; margin: 32rpx 24rpx; }
+.btn-approve { flex: 1; background: #C04851; color: #FDFBF6; text-align: center; padding: 24rpx 0; font-size: 28rpx; }
+.btn-reject { flex: 1; border: 1rpx solid #C04851; color: #C04851; text-align: center; padding: 24rpx 0; font-size: 28rpx; }
+
+.empty { text-align: center; color: #999; padding: 120rpx 24rpx; }
+.empty-icon { font-size: 48rpx; color: #d0c8b8; }
+.empty-text { margin-top: 16rpx; font-size: 26rpx; }
+.empty-btn {
+  display: inline-block; margin-top: 24rpx; padding: 12rpx 40rpx;
+  border: 1rpx solid #C04851; color: #C04851; font-size: 24rpx;
+}

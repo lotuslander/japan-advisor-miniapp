@@ -1,0 +1,9 @@
+{
+  "name": "update-case-stage",
+  "version": "1.0.0",
+  "description": "推进案件阶段",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

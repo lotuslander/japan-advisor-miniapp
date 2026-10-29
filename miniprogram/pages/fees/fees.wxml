@@ -1,0 +1,38 @@
+<!-- 费用报价计算器 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">費用見積</view>
+    <view class="hero-sub">官方费用 + 行政书士报酬市场区间 · 仅供顾问参考</view>
+  </view>
+
+  <view class="path-row">
+    <text class="path {{path===item.key?'active':''}}" wx:for="{{paths}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="setPath">{{item.label}}</text>
+  </view>
+
+  <view class="card">
+    <view class="section-title">{{path === 'realestate' ? '物件价格（万日元）' : '资本金（万日元）'}}</view>
+    <input class="fi" type="number" value="{{form.capital_wan}}" data-k="capital_wan" bindinput="onInput" />
+    <view class="form-tip">金额为参考区间，实际以行政书士报价与官厅手数料为准；日元未含汇率波动。</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">费用明细（日元）</view>
+    <view class="rhead"><text class="r1">项目</text><text class="r2">下限</text><text class="r3">上限</text></view>
+    <view class="row" wx:for="{{rows}}" wx:key="item.item">
+      <view class="r1">
+        <view class="r-item">{{item.item}}</view>
+        <view class="r-note">{{item.note}}</view>
+      </view>
+      <text class="r2">{{item.low}}</text>
+      <text class="r3">{{item.high}}</text>
+    </view>
+    <view class="total">
+      <text class="total-label">合计参考</text>
+      <text class="total-num">{{totalLow}} ～ {{totalHigh}} 円</text>
+    </view>
+    <view class="copy-btn" bindtap="copyQuote">复制报价单（发客户）</view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

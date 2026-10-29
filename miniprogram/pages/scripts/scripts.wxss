@@ -1,0 +1,13 @@
+.page { padding-bottom: 40rpx; }
+.hero { background: #C04851; padding: 48rpx 40rpx; color: #FDFBF6; }
+.hero-title { font-size: 34rpx; font-weight: 600; letter-spacing: 2rpx; }
+.hero-sub { font-size: 24rpx; opacity: 0.85; margin-top: 8rpx; }
+
+.cat-row { display: flex; gap: 16rpx; padding: 24rpx; overflow-x: auto; }
+.cat { font-size: 24rpx; color: #999; padding: 8rpx 24rpx; border: 1rpx solid #d8d0c0; white-space: nowrap; }
+.cat.active { color: #C04851; border-color: #C04851; font-weight: 600; }
+
+.card { background: #FDFBF6; margin: 0 24rpx 16rpx; border: 1rpx solid #e0d8c8; padding: 28rpx; }
+.qa-q { font-size: 28rpx; font-weight: 600; line-height: 1.5; }
+.qa-a { font-size: 25rpx; color: #444; line-height: 1.7; margin-top: 16rpx; }
+.qa-copy { display: inline-block; font-size: 22rpx; color: #C04851; border: 1rpx solid #C04851; padding: 6rpx 20rpx; margin-top: 16rpx; }

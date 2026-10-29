@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "客戶詳情",
+  "usingComponents": {
+    "client-progress": "../../components/client-progress/client-progress"
+  }
+}

@@ -1,0 +1,24 @@
+<view class="page">
+  <view class="header">
+    <view class="title">不动产投资问题库</view>
+    <view class="sub">14个高频痛点，点一下让AI给你解决方案</view>
+  </view>
+
+  <scroll-view scroll-x class="cat-bar">
+    <view class="cat-item {{currentCat === item ? 'active' : ''}}" wx:for="{{categories}}" wx:key="*this" bindtap="setCat" data-cat="{{item}}">{{item}}</view>
+  </scroll-view>
+
+  <view class="issue-list">
+    <view class="issue-card" wx:for="{{filtered}}" wx:key="id" bindtap="askAI" data-item="{{item}}">
+      <view class="issue-top">
+        <view class="issue-title">{{item.title}}</view>
+        <view class="priority p{{item.priority}}">{{item.priority}}星</view>
+      </view>
+      <view class="issue-desc">{{item.description}}</view>
+      <view class="issue-ai">💡 AI解决方案：{{item.aiSolution}}</view>
+      <view class="issue-action">点此问AI详细解答 →</view>
+    </view>
+  </view>
+
+  <global-ai-float></global-ai-float>
+</view>

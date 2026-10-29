@@ -1,0 +1,93 @@
+<!-- 顾问档案 -->
+<view class="page">
+  <!-- 1. 身份档案（最上面） -->
+  <view class="profile-card">
+    <view class="avatar">顧</view>
+    <view class="info">
+      <view class="name">{{profile.name || '未设置姓名'}}</view>
+      <view class="role" wx:if="{{profile.org || profile.role}}">{{profile.org}} · {{profile.role}}</view>
+      <view class="role" wx:if="{{advisorId}}">顾问 ID：#{{advisorId}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">基本資料</view>
+    <view class="kv"><text class="k">姓名</text><text class="v">{{profile.name || '未设置'}}</text></view>
+    <view class="kv" wx:if="{{profile.org}}"><text class="k">机构</text><text class="v">{{profile.org}}</text></view>
+    <view class="kv" wx:if="{{profile.role}}"><text class="k">职务</text><text class="v">{{profile.role}}</text></view>
+    <view class="kv" wx:if="{{profile.years}}"><text class="k">从业年限</text><text class="v">{{profile.years}} 年</text></view>
+  </view>
+
+  <view class="card" wx:if="{{profile.specialties.length}}">
+    <view class="section-title">专长领域</view>
+    <view class="tags">
+      <text class="tag" wx:for="{{profile.specialties}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{profile.certs.length}}">
+    <view class="section-title">资质证书</view>
+    <view class="cert" wx:for="{{profile.certs}}" wx:key="*this">{{item}}</view>
+  </view>
+
+  <view class="card" wx:if="{{profile.records.length}}">
+    <view class="section-title">执业记录</view>
+    <view class="record" wx:for="{{profile.records}}" wx:key="label">
+      <view class="record-label">{{item.label}}</view>
+      <view class="record-num">{{item.value}}</view>
+    </view>
+  </view>
+
+  <!-- 2. 知识库管理 -->
+  <view class="card">
+    <view class="section-title">📚 知识库管理</view>
+    <view class="about">查看和管理AI自动更新的政策、案例和文书模板</view>
+    <view class="btn-row">
+      <button size="mini" bindtap="goKnowledgeAdmin">打开知识库管理</button>
+    </view>
+  </view>
+
+  <!-- 3. 数据安全 -->
+  <view class="card">
+    <view class="section-title">数据安全</view>
+    <view class="about-item">· 客户数据按顾问 OpenID 隔离，其他顾问不可见</view>
+    <view class="about-item">· 案例库发布前须脱敏并经人工审核</view>
+    <view class="about-item">· 政策数据仅存本地缓存，不上传第三方</view>
+    <view class="about-item">· 商用上线前须更换正式付费 API Key</view>
+  </view>
+
+  <!-- 4. 大模型配置 -->
+  <view class="card">
+    <view class="section-title">大模型 API 配置</view>
+    <view class="kv"><text class="k">LLM API Key</text><input class="v input" password="{{hideKey}}" value="{{llmKey}}" placeholder="点击填写" bindinput="onLlmKeyInput"/></view>
+    <view class="btn-row">
+      <button size="mini" bindtap="testConnect">测试连通</button>
+      <button size="mini" type="primary" bindtap="saveKey">保存</button>
+      <button size="mini" bindtap="clearKey">清除</button>
+    </view>
+    <view class="advanced-entry" bindtap="goApiConfig">⚙️ 切换服务商（智谱/DeepSeek/通义/豆包/Kimi等）</view>
+    <view class="advanced-entry" bindtap="goSourcesAdmin">📡 政策源管理（内置 48 个官方来源）</view>
+    <view class="tip">密钥仅保存在本机，不上传云端</view>
+  </view>
+
+  <!-- 5. 数据迁移 -->
+  <view class="card">
+    <view class="section-title">💾 数据迁移</view>
+    <view class="about">一键导出所有客户数据和配置到文件，备份到手机云盘或百度网盘。换手机时一键导入恢复。</view>
+    <view class="btn-row">
+      <button size="mini" bindtap="exportData">📤 导出数据</button>
+      <button size="mini" bindtap="importData">📥 导入数据</button>
+    </view>
+  </view>
+
+  <!-- 6. 关于和隐私（最下面） -->
+  <view class="card">
+    <view class="section-title">關於本工具</view>
+    <view class="about">投资日本AI小助理：纯本地运行，所有数据保存在您的手机上。政策数据来自日本政府公开网站。</view>
+    <view class="about-link" bindtap="goPrivacy">隱私與數據保護 ›</view>
+    <view class="version">v1.0 纯本地版</view>
+  </view>
+
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

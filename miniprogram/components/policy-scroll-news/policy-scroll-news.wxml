@@ -1,0 +1,32 @@
+<!-- 首页政策·新闻滚动条 -->
+<view class="news-bar" wx:if="{{items.length}}">
+  <view class="news-head">
+    <view class="news-label" catchtap="goNews">📡 动态</view>
+    <view class="news-more" catchtap="goNews">全部 ›</view>
+  </view>
+
+  <swiper class="news-swiper"
+          vertical
+          autoplay
+          circular
+          interval="4000"
+          duration="400"
+          bindchange="onSwiperChange">
+    <swiper-item wx:for="{{items}}" wx:key="id" data-idx="{{index}}" bindtap="onTapItem">
+      <view class="news-item">
+        <text class="news-tag {{item.tagClass}}">{{item.tag}}</text>
+        <view class="news-body">
+          <view class="news-title">{{item.title}}</view>
+          <view class="news-meta">{{item.meta}}</view>
+        </view>
+        <text class="news-arrow">›</text>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 进度点 -->
+  <view class="news-dots">
+    <view class="news-dot {{current === index ? 'active' : ''}}"
+          wx:for="{{items}}" wx:key="id"></view>
+  </view>
+</view>

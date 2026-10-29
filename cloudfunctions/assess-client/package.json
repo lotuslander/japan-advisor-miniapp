@@ -1,0 +1,9 @@
+{
+  "name": "assess-client",
+  "version": "1.0.0",
+  "description": "综合评估引擎：客户画像×政策×案例",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

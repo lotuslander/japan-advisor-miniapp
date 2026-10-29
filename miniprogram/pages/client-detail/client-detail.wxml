@@ -1,0 +1,125 @@
+<!-- 客户详情 -->
+<view class="page">
+  <view class="header">
+    <view class="avatar-lg">{{client.name[0]}}</view>
+    <view class="meta">
+      <view class="name">{{client.name}} <text class="stage-tag stage-{{client.stage}}">{{client.stageLabel}}</text></view>
+      <view class="sub">{{client.occupation || '待补充'}} · 年收 {{client.annual_income_jpy ? client.annual_income_jpy + ' 円' : '待补充'}}</view>
+      <view class="sub">标签：{{client.tagsText}}</view>
+    </view>
+  </view>
+
+  <!-- 鱼骨图进度主线 -->
+  <client-progress current-stage="{{client.stage || 'lead'}}"></client-progress>
+
+  <view class="section">
+    <view class="section-title">📧 档期报告</view>
+    <view class="email-row">
+      <text class="email-lbl">客户邮箱</text>
+      <input placeholder="client@example.com" value="{{client.email}}" data-k="email" bindinput="onClientEdit" />
+    </view>
+    <view class="btn primary" bindtap="genReport">📄 一键生成进度报告（转发客户）</view>
+    <view class="tip">生成HTML格式报告，可直接转发微信/邮件给客户；定期推送=书面沟通记录</view>
+  </view>
+
+  <!-- 客户标签 -->
+  <view class="section">
+    <view class="section-title">🏷️ 客户标签</view>
+    <view class="tag-row">
+      <text class="tag-chip {{client.tags && client.tags.includes('高净值') ? 'active-gold' : ''}}" bindtap="toggleTag" data-tag="高净值">高净值</text>
+      <text class="tag-chip {{client.tags && client.tags.includes('风险客户') ? 'active-red' : ''}}" bindtap="toggleTag" data-tag="风险客户">风险</text>
+      <text class="tag-chip {{client.tags && client.tags.includes('加急') ? 'active-red' : ''}}" bindtap="toggleTag" data-tag="加急">加急</text>
+      <text class="tag-chip {{client.tags && client.tags.includes('犹豫期') ? 'active-yellow' : ''}}" bindtap="toggleTag" data-tag="犹豫期">犹豫期</text>
+      <text class="tag-chip {{client.tags && client.tags.includes('老客户推荐') ? 'active-green' : ''}}" bindtap="toggleTag" data-tag="老客户推荐">老客户推荐</text>
+    </view>
+  </view>
+
+  <!-- 沟通记录 -->
+  <view class="section">
+    <view class="section-title">📞 沟通记录</view>
+    <view class="comm-list" wx:if="{{commLogs.length}}">
+      <view class="comm-item" wx:for="{{commLogs}}" wx:key="_id">
+        <view class="comm-date">{{item.date}}</view>
+        <view class="comm-type">{{item.type}}</view>
+        <view class="comm-note">{{item.note}}</view>
+      </view>
+    </view>
+    <view class="empty" wx:else>暂无沟通记录</view>
+    <view class="comm-form">
+      <input placeholder="记录这次沟通要点..." value="{{commNote}}" bindinput="onCommNote" />
+      <picker range="{{commTypes}}" bindchange="onCommType">
+        <view class="comm-type-pick">{{commTypeLabel || '选类型'}}</view>
+      </picker>
+      <view class="btn small" bindtap="addComm">+ 添加记录</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">在辦案件</view>
+    <view class="case-item" wx:for="{{cases}}" wx:key="case_id" data-id="{{item.case_id}}" bindtap="goCase">
+      <view>
+        <view class="case-path">{{item.pathLabel}}</view>
+        <view class="case-meta">起動 {{item.started_at}} · 預計 {{item.expected_result_at}}</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+    <view class="new-case" bindtap="goNewCase">+ 新建案件</view>
+    <view class="empty-tip" wx:if="{{!cases.length}}">暂无在办案件</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">待办任务（{{pendingCount}}）</view>
+    <view class="note" wx:for="{{pendingTasks}}" wx:key="_id">
+      <view class="note-date">{{item.title}} · 截止 {{item.due_date}}</view>
+    </view>
+    <view class="empty-tip" wx:if="{{!pendingTasks.length}}">暂无待办任务</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">画像標簽</view>
+    <view class="tags">
+      <text class="tag" wx:for="{{client.tags}}" wx:key="*this">{{item}}</text>
+      <text class="empty-tip" wx:if="{{!client.tags.length}}">暂无标签</text>
+    </view>
+    <view class="assess-btn" bindtap="goAssess">発起個案評価 →</view>
+  </view>
+
+  <view class="section referral-card">
+    <view class="section-title">推荐有礼</view>
+    <view class="referral-desc">满意就推荐给朋友，双方各得顾问服务费抵扣券</view>
+    <view class="referral-code">
+      <text class="code-label">专属推荐码</text>
+      <text class="code-value">{{client.referralCode || 'JP-' + client._id}}</text>
+      <text class="copy" bindtap="copyReferral">复制</text>
+    </view>
+    <view class="referral-stats">
+      <view class="stat"><text class="num">{{client.referredCount || 0}}</text><text class="lab">已推荐</text></view>
+      <view class="stat"><text class="num">{{client.rewardEarned || 0}}</text><text class="lab">累计抵扣(万円)</text></view>
+    </view>
+    <button class="referral-btn" size="mini" bindtap="shareReferral">分享给朋友</button>
+  </view>
+
+  <view class="section">
+    <view class="section-title">溝通記錄</view>
+    <view class="note" wx:for="{{notes}}" wx:key="_id">
+      <view class="note-date"><text class="note-kind">{{item.kindLabel}}</text> {{item.date}}</view>
+      <view class="note-text">{{item.content}}</view>
+    </view>
+    <view class="empty-tip" wx:if="{{!notes.length}}">暂无沟通记录</view>
+
+    <view class="note-form">
+      <view class="note-kinds">
+        <text class="nk {{noteKind===item.key?'active':''}}"
+              wx:for="{{noteKinds}}" wx:key="key"
+              data-k="{{item.key}}" bindtap="setNoteKind">{{item.label}}</text>
+      </view>
+      <textarea class="note-input" placeholder="记录本次沟通要点…" value="{{noteContent}}" bindinput="onNoteInput" auto-height />
+      <picker mode="date" value="{{nextFollowupAt}}" bindchange="onNextFollowup">
+        <view class="followup-picker">{{nextFollowupAt ? '下次跟进：' + nextFollowupAt : '设置下次跟进日期（可选）'}}</view>
+      </picker>
+      <view class="note-submit" bindtap="addNote">保存记录</view>
+    </view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

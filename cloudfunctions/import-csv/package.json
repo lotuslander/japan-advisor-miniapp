@@ -1,0 +1,9 @@
+{
+  "name": "import-csv",
+  "version": "1.0.0",
+  "description": "CSV 批量导入客户",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

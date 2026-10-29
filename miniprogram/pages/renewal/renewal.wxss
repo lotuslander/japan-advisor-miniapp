@@ -1,0 +1,19 @@
+.page { padding-bottom: 60rpx; }
+.hero { background: #C04851; padding: 48rpx 40rpx; color: #FDFBF6; }
+.hero-title { font-size: 34rpx; font-weight: 600; letter-spacing: 2rpx; }
+.hero-sub { font-size: 24rpx; opacity: 0.85; margin-top: 8rpx; line-height: 1.6; }
+
+.card { background: #FDFBF6; margin: 24rpx; border: 1rpx solid #e0d8c8; padding: 32rpx; }
+.section-title { font-size: 28rpx; font-weight: 600; margin-bottom: 16rpx; letter-spacing: 2rpx; }
+
+.chk { display: flex; align-items: flex-start; padding: 16rpx 0; border-bottom: 1rpx dashed #d0c8b8; }
+.chk:last-child { border-bottom: none; }
+.chk-body { flex: 1; margin-left: 12rpx; }
+.chk-text { font-size: 26rpx; line-height: 1.5; }
+.chk-text.done-text { color: #5A7A5A; text-decoration: line-through; }
+.chk-tip { font-size: 22rpx; color: #999; margin-top: 6rpx; line-height: 1.5; }
+
+.reset-btn {
+  margin: 0 24rpx; border: 1rpx solid #d0c8b8; color: #888;
+  text-align: center; padding: 22rpx 0; font-size: 26rpx;
+}

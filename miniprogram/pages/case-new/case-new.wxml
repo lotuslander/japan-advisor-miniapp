@@ -1,0 +1,30 @@
+<!-- 新建案件 -->
+<view class="page">
+  <view class="card">
+    <view class="section-title">选择签证路径</view>
+    <view class="path-option {{form.path === 'bm' ? 'active' : ''}}" data-p="bm" bindtap="setPath">
+      <view class="path-name">经营管理签</view>
+      <view class="path-desc">资本金 3000 万日元 · 1 名全职 · N2 · 约 4-6 个月</view>
+    </view>
+    <view class="path-option {{form.path === 'hsp' ? 'active' : ''}}" data-p="hsp" bindtap="setPath">
+      <view class="path-name">高度专门职 1 号</view>
+      <view class="path-desc">70 分达标 · 年收 1000 万+ · 约 3 个月</view>
+    </view>
+    <view class="path-option {{form.path === 'pr' ? 'active' : ''}}" data-p="pr" bindtap="setPath">
+      <view class="path-name">永驻申请</view>
+      <view class="path-desc">10 年在留 · 80 分可 1 年 · 约 6-12 个月</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">方案报价</view>
+    <view class="form-row"><text class="label">客户姓名</text><input placeholder="客户姓名" value="{{form.client_name}}" bindinput="onClientName" /></view>
+    <view class="form-row"><text class="label">服务费（万日元）</text><input type="digit" value="{{form.price}}" bindinput="onPrice" /></view>
+    <view class="form-row"><text class="label">已收定金</text><input type="digit" placeholder="如 50" bindinput="onDeposit" /></view>
+    <view class="form-row"><text class="label">预计递交</text><input type="text" placeholder="YYYY-MM-DD" value="{{form.expected}}" bindinput="onExpected" /></view>
+  </view>
+
+  <view class="save-btn" bindtap="save">確認方案並啓動案件</view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

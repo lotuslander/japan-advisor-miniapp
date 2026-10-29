@@ -1,0 +1,24 @@
+.page { padding-bottom: 40rpx; }
+.kpi-grid { display: flex; flex-wrap: wrap; padding: 24rpx 12rpx; }
+.kpi-card {
+  width: 50%; box-sizing: border-box; padding: 12rpx;
+}
+.kpi-card > view {
+  background: #FDFBF6; border: 1rpx solid #e0d8c8;
+  text-align: center; padding: 40rpx 0;
+}
+.num { font-size: 56rpx; font-weight: 700; color: #C04851; }
+.label { font-size: 24rpx; color: #999; margin-top: 8rpx; letter-spacing: 2rpx; }
+
+.card { background: #FDFBF6; margin: 24rpx; border: 1rpx solid #e0d8c8; padding: 32rpx; }
+.section-title { font-size: 30rpx; font-weight: 600; margin-bottom: 20rpx; letter-spacing: 2rpx; }
+.bar-row { display: flex; align-items: center; padding: 14rpx 0; }
+.bar-label { width: 160rpx; font-size: 24rpx; color: #555; }
+.bar-track { flex: 1; height: 20rpx; background: #e8e0d0; }
+.bar-fill { height: 100%; background: #C04851; }
+.bar-num { width: 60rpx; text-align: right; font-size: 24rpx; }
+
+.feed-item { padding: 20rpx 0; border-bottom: 1rpx dashed #d0c8b8; }
+.feed-item:last-child { border-bottom: none; }
+.feed-title { font-size: 26rpx; font-weight: 500; }
+.feed-meta { font-size: 22rpx; color: #999; margin-top: 6rpx; }

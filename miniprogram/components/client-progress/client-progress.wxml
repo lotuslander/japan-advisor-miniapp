@@ -1,0 +1,13 @@
+<view class="progress-container">
+  <view class="progress-title">客户进度</view>
+  <view class="progress-stages">
+    <view class="stage {{index < currentStage ? 'done' : ''}} {{index === currentStage ? 'current' : ''}}" wx:for="{{stages}}" wx:key="key">
+      <view class="stage-dot">
+        <text wx:if="{{index < currentStage}}">✓</text>
+        <text wx:else>{{index + 1}}</text>
+      </view>
+      <view class="stage-label">{{item.label}}</view>
+      <view class="stage-line" wx:if="{{index < stages.length - 1}}"></view>
+    </view>
+  </view>
+</view>

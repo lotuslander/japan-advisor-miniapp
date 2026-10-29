@@ -1,0 +1,56 @@
+<!-- 案件工作台 -->
+<view class="page">
+
+  <view class="stage-bar">
+    <view class="stage {{idx <= stageIdx ? 'done' : ''}}" wx:for="{{stages}}" wx:for-index="idx" wx:key="*this">
+      <view class="dot">{{idx + 1}}</view>
+      <view class="label">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="advance-btn" wx:if="{{case && case.stage !== 'closed'}}" bindtap="advanceStage">
+    推进到下一阶段 →
+  </view>
+
+  <view class="card" wx:if="{{case}}">
+    <view class="row"><text class="k">客户</text><text class="v">{{case.client_name}}</text></view>
+    <view class="row"><text class="k">路径</text><text class="v">{{pathLabel}}</text></view>
+    <view class="row"><text class="k">启动日</text><text class="v">{{case.started_at}}</text></view>
+    <view class="row"><text class="k">预计完成</text><text class="v">{{case.expected_result_at}}</text></view>
+    <view class="row"><text class="k">合同金额</text><text class="v">{{case.package_price_jpy}} 日元</text></view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">待办任务</view>
+    <view class="task" wx:for="{{tasks}}" wx:key="_id">
+      <checkbox checked="{{item.done}}" data-id="{{item._id}}" bindtap="toggleTask" />
+      <view class="task-body">
+        <view class="task-title {{item.done ? 'done-text' : ''}}">{{item.title}}</view>
+        <view class="task-due {{item.urgent ? 'urgent' : ''}}">截止 {{item.due_date}}{{item.urgent ? ' · 緊急' : ''}}</view>
+      </view>
+    </view>
+    <view class="empty-sm" wx:if="{{!tasks.length}}">暂无任务</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">材料清单</view>
+    <view class="doc" wx:for="{{documents}}" wx:key="name">
+      <view class="doc-status s-{{item.status}}"></view>
+      <view class="doc-name">{{item.name}}</view>
+      <view class="doc-state">{{item.status === 'submitted' ? '已提交' : item.status === 'ready' ? '已就绪' : '待準備'}}</view>
+    </view>
+    <view class="empty-sm" wx:if="{{!documents.length}}">暂无材料</view>
+  </view>
+
+  <view class="card cite-card" bindtap="goTimeline">
+    <view class="cite-icon"><view class="line-icon li-policy"></view></view>
+    <view>
+      <view class="cite-title">本案件适用政策依据</view>
+      <view class="cite-sub">查看政策年表 ›</view>
+    </view>
+  </view>
+
+  <view class="close-btn" bindtap="closeCase">案件結案 → 歸檔並反哺案例庫</view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>

@@ -1,0 +1,9 @@
+{
+  "name": "get-policies-snapshot",
+  "version": "1.0.0",
+  "description": "政策快照：小程序启动时全量缓存",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

@@ -1,0 +1,63 @@
+<!-- 客户画像语音录入向导 -->
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">🎙 客户画像录入向导</view>
+    <view class="hero-sub">按住说话，AI自动提取客户信息→生成档案→路径匹配度报告</view>
+  </view>
+
+  <!-- 录音区 -->
+  <view class="record-card">
+    <button class="record-btn {{recording ? 'recording' : ''}}"
+            bindtouchstart="startRecord" bindtouchend="endRecord">
+      {{recording ? '🔴 录音中...松开结束' : '🎤 按住开始说话'}}
+    </button>
+    <view class="record-hint">
+      请描述：客户年龄、学历、工作、年收、日语水平、想去日本的目的、预算
+    </view>
+
+    <!-- 文字录入：语音输入法出来的文字会填到这里，也可直接手打 -->
+    <textarea class="transcript-input"
+              value="{{transcript}}"
+              bindinput="onTranscriptInput"
+              placeholder="也可直接输入客户情况，例如：35岁 硕士 IT工程师 年收800万日元 日语N2 想办高度人才"
+              auto-height
+              maxlength="500" />
+    <view class="transcript-tip" wx:if="{{transcript}}">已录入 {{transcript.length}} 字</view>
+  </view>
+
+  <!-- 识别结果 -->
+  <view class="card" wx:if="{{transcript}}">
+    <view class="section-title">📝 识别结果</view>
+    <view class="transcript">{{transcript}}</view>
+    <view class="btn primary" bindtap="extractInfo">🔍 AI提取客户信息</view>
+  </view>
+
+  <!-- 提取结果 -->
+  <view class="card" wx:if="{{extracted}}">
+    <view class="section-title">✅ AI提取的客户信息</view>
+    <view class="info-row"><text class="info-lbl">年龄</text><text class="info-val">{{extracted.age || '❌ 缺失'}}</text></view>
+    <view class="info-row"><text class="info-lbl">学历</text><text class="info-val">{{extracted.education || '❌ 缺失'}}</text></view>
+    <view class="info-row"><text class="info-lbl">年收</text><text class="info-val">{{extracted.annual_income_jpy ? extracted.annual_income_jpy + '日元' : '❌ 缺失'}}</text></view>
+    <view class="info-row"><text class="info-lbl">日语水平</text><text class="info-val">{{extracted.japanese_level || '❌ 缺失'}}</text></view>
+    <view class="info-row"><text class="info-lbl">目标路径</text><text class="info-val">{{extracted.target_path || '❌ 缺失'}}</text></view>
+
+    <!-- 缺失项 -->
+    <view class="missing-box" wx:if="{{missing.length}}">
+      <view class="missing-title">⚠️ 还缺以下信息：</view>
+      <view class="missing-item" wx:for="{{missing}}" wx:key="*this">{{item}}</view>
+      <view class="missing-hint">请继续补充：再按住麦克风说一遍缺失的内容</view>
+    </view>
+
+    <!-- 路径匹配度 -->
+    <view class="match-box" wx:if="{{matchScore}}">
+      <view class="match-title">🎯 路径匹配度</view>
+      <view class="match-score">{{matchScore}}分</view>
+      <view class="match-level">{{matchLevel}}</view>
+      <view class="match-suggestion">{{matchSuggestion}}</view>
+    </view>
+
+    <view class="btn success" bindtap="saveClient">💾 保存客户档案</view>
+  </view>
+  <!-- 全局AI浮动按钮 -->
+  <global-ai-float></global-ai-float>
+</view>
